@@ -31,7 +31,7 @@ public class onstart {
             }
             case "inventory-v3 --Normal --nm" ->{
                 out.println(command + "is" + ltxt);
-                inventoryV3.main();
+                inventoryV3.startcheck();
             }
             //Dobbelsteen Starter (Dobblesteen met 6 ogen)
             case "dobbelgame --Normal ---VThrow6" -> {
