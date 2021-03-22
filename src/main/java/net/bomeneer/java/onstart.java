@@ -38,10 +38,13 @@ public class onstart {
                 out.println(command + " is " + ltxt);
                 dobbelgame.throw6();
             }
-
             case "dobbelgame --Normal ---VThrow100" -> {
                 out.println(command + " is " + ltxt);
                 dobbelgame.throw100();
+            }
+            case "thermostaat --Normal" ->{
+                out.println(command + " is " + ltxt);
+                thermostaat.main();
             }
             default -> out.println("Error could not Handle and/or Register Program or Argument (Error 404/0)");
         }

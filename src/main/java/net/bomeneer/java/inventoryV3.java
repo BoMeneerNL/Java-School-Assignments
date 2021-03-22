@@ -175,19 +175,19 @@ public class inventoryV3 {
         } while (jeff == 0);
     }
     public inventoryV3(float price, String producttype, String product, int stocked){
-        this.price = price;
-        this.product = product;
-        this.producttype = producttype;
-        this.stocked = stocked;
+        inventoryV3.price = price;
+        inventoryV3.product = product;
+        inventoryV3.producttype = producttype;
+        inventoryV3.stocked = stocked;
         gameplatform = false;
     }
     public inventoryV3(float price, String producttype, String product, int stocked, String plaforms, int pegirating){
-        this.price = price;
-        this.product = product;
-        this.producttype = producttype;
-        this.stocked = stocked;
-        this.platforms = plaforms;
-        this.pegirating = pegirating;
+        inventoryV3.price = price;
+        inventoryV3.product = product;
+        inventoryV3.producttype = producttype;
+        inventoryV3.stocked = stocked;
+        platforms = plaforms;
+        inventoryV3.pegirating = pegirating;
         gameplatform = true;
     }
 
