@@ -9,13 +9,19 @@ public class thermostaat {
     static String command;
     static byte settedtempinterval;
     static float nowtemp = 20;
+    static float newtemp;
+    static boolean proceed = true;
+    static boolean tempup;
     public static Scanner input = new Scanner(System.in);
-    static void changetemp(byte tempinterval, double oldtemp,float nowtemp, float newtemp,boolean tempup){
-        if(tempup){
-
+    static void changetemp(byte tempinterval, double oldtemp, float tempnewtemp, boolean temptempup){
+        if(temptempup){
+            while(nowtemp < tempnewtemp){
+                nowtemp = nowtemp + tempinterval;
+                out.println(nowtemp);
+            }
         }
-        else if(!tempup){
-            while(nowtemp > newtemp){
+        else if(!temptempup){
+            while(nowtemp > tempnewtemp){
                 nowtemp = nowtemp - tempinterval;
                 out.println(nowtemp);
             }
@@ -24,33 +30,38 @@ public class thermostaat {
         else {
             out.println("Oops, something went wrong :(");
         }
+        out.println("done, new temprature is: " + nowtemp);
     }
     static void main(){
-        out.println("Welcome to SRCLA?");
-        while(command != "exit" || command != "end"){
+        out.println("*==========================================*\r\n|   Bo's Java Assignments                                 |\r\n|                Version: 1.0 (JavBuild)                  |\r\n|   https://github.com/BoMeneerNL/Java-School-Assignments |\r\n|        STRCL-CLI          |\r\n*===========================*");
+        while(proceed){
             out.print("SRCLA?/Thermostaat@192.168.1.99>");
             command = input.nextLine();
             switch (command){
                 case "setinterval":
                     out.println("To what interval do you want to set your thermostat? (only use full numbers)");
-                    out.println("SRCLA?/Thermostaat@192.168.1.99/SetInterval>");
+                    out.print("SRCLA?/Thermostaat@192.168.1.99/SetInterval>");
                     try {
                         settedtempinterval = input.nextByte();
-                        out.print("");
+                        out.println("New Interval: " + settedtempinterval);
                     }
                     catch (InputMismatchException exception){
                         out.println("Oops, this command only accepts between -127 and 127 and doesn't support decimal numbers");
                     }
                 break;
                 case "settemp":
-                    out.println("What");
+                    out.println("What do you want to be the new temprature?");
+                    newtemp = input.nextFloat();
+                    if (newtemp > nowtemp){tempup = true;}
+                    else if(newtemp < nowtemp){tempup = false;}
+                    changetemp(settedtempinterval,nowtemp,newtemp,tempup);
                     break;
                 case "icall geti":
                     out.println("VAR$settedtempinterval = " + settedtempinterval);
                     break;
                 case "exit":
                 case "end":
-                    System.exit(0);
+                    proceed = false;
                     break;
                 default:
             }
