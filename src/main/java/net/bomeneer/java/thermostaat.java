@@ -33,7 +33,7 @@ public class thermostaat {
         out.println("done, new temprature is: " + nowtemp);
     }
     static void main(){
-        out.println("*==========================================*\r\n|   Bo's Java Assignments                                 |\r\n|                Version: 1.0 (JavBuild)                  |\r\n|   https://github.com/BoMeneerNL/Java-School-Assignments |\r\n|        STRCL-CLI          |\r\n*===========================*");
+        out.println("*=========================================================*\r\n|                  Bo's Java Assignments                  |\r\n|                Version: 1.0 (JavBuild)                  |\r\n|  https://github.com/BoMeneerNL/Java-School-Assignments  |\r\n|                     STRCL-CLI/SRCLA                     |\n" + "|           https://github.com/BoMeneerNL/SRCLA           |\n*=========================================================*");
         while(proceed){
             out.print("SRCLA?/Thermostaat@192.168.1.99>");
             command = input.nextLine();
@@ -57,7 +57,13 @@ public class thermostaat {
                     changetemp(settedtempinterval,nowtemp,newtemp,tempup);
                     break;
                 case "icall geti":
+                    out.println("I(nternal)CALL GETInfo/VAR Dump: ");
+                    out.println("VAR$command = " + command);
                     out.println("VAR$settedtempinterval = " + settedtempinterval);
+                    out.println("VAR$nowtemp = " + nowtemp);
+                    out.println("VAR$newtemp = " + newtemp);
+                    out.println("VAR$proceed = " + proceed);
+                    out.println("VAR$tempup =" + tempup);
                     break;
                 case "exit":
                 case "end":
