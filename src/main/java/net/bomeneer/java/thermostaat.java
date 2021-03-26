@@ -6,12 +6,13 @@ import java.util.Scanner;
 import static java.lang.System.*;
 
 public class thermostaat {
-    static String command;
-    static byte settedtempinterval;
-    static float nowtemp = 20;
-    static float newtemp;
-    static boolean proceed = true;
-    static boolean tempup;
+    static String command; //Controlls CL Commands input
+    static byte settedtempinterval; //Contains
+    static float nowtemp = 20; //Contains
+    static float newtemp; //Contains
+    static boolean proceed = true; //Controlls Exit@error&leaving
+    static boolean tempup; //acts as temperature up or down in changetemp()
+    String[][] history = { {null, null, null, null}, {null, null, null}, {null, null, null}, {null, null, null}, {null, null, null}, {null, null, null}, {null, null, null}, {null, null, null}, {null, null, null}, {null, null, null} };
     public static Scanner input = new Scanner(System.in);
     static void changetemp(byte tempinterval, double oldtemp, float tempnewtemp, boolean temptempup){
         if(temptempup){
@@ -53,12 +54,14 @@ public class thermostaat {
                     }
                 break;
                 case "settemp":
-                    out.println("What do you want to be the new temprature?");
+                    out.println("What do you want to be the new temperature?");
                     newtemp = input.nextFloat();
                     if (newtemp > nowtemp){tempup = true;}
                     else if(newtemp < nowtemp){tempup = false;}
                     changetemp(settedtempinterval,nowtemp,newtemp,tempup);
                     break;
+                case "changetimes":
+
                 case "icall geti":
                     out.println("I(nternal)CALL GETInfo/VAR Dump: ");
                     out.println("VAR$command = " + command);

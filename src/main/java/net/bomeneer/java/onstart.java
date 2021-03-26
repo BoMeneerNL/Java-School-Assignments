@@ -19,30 +19,23 @@ public class onstart {
                 out.println(command + " is " + ltxt);
                 products.main();
             }
-            //Debugger (Nothing yet)
-            case "inventory-v1 --Debugger --nm" -> {
-                out.println(command + " is " + ltxt);
-                out.println("Sorry this location is to silent (error Emp_proj:: could not reach real/some content");
-            }
-            //Inventory V2 Starter
-            case "inventory-v2 --Normal --nm" -> {
+            case "inventory-v2" -> {
                 out.println(command + " is " + ltxt);
                 invertoryV2.main();
             }
-            case "inventory-v3 --Normal --nm" ->{
+            case "inventory-v3" ->{
                 out.println(command + "is" + ltxt);
                 inventoryV3.startcheck();
             }
-            //Dobbelsteen Starter (Dobblesteen met 6 ogen)
-            case "dobbelgame --Normal ---VThrow6" -> {
+            case "dobbelgame --T=6" -> {
                 out.println(command + " is " + ltxt);
                 dobbelgame.throw6();
             }
-            case "dobbelgame --Normal ---VThrow100" -> {
+            case "dobbelgame --T=100" -> {
                 out.println(command + " is " + ltxt);
                 dobbelgame.throw100();
             }
-            case "thermostaat --Normal" ->{
+            case "thermostaat" ->{
                 out.println(command + " is " + ltxt);
                 thermostaat.main();
             }
