@@ -34,6 +34,9 @@ public class thermostaat {
     }
     static void main(){
         out.println("*=========================================================*\r\n|                  Bo's Java Assignments                  |\r\n|                Version: 1.0 (JavBuild)                  |\r\n|  https://github.com/BoMeneerNL/Java-School-Assignments  |\r\n|                     STRCL-CLI/SRCLA                     |\n" + "|           https://github.com/BoMeneerNL/SRCLA           |\n*=========================================================*");
+        poweron();
+    }
+    static void poweron(){
         while(proceed){
             out.print("SRCLA?/Thermostaat@192.168.1.99>");
             command = input.nextLine();
@@ -65,6 +68,9 @@ public class thermostaat {
                     out.println("VAR$proceed = " + proceed);
                     out.println("VAR$tempup =" + tempup);
                     break;
+                case "poweroff":
+                    poweroff();
+                    break;
                 case "exit":
                 case "end":
                     proceed = false;
@@ -72,5 +78,17 @@ public class thermostaat {
                 default:
             }
         }
+    }
+    static void poweroff(){
+        int jeff = 0;
+        while (jeff == 0){
+            out.print("SRCLA?/SSH@NotConnected>");
+            command = input.nextLine();
+            switch (command) {
+                case "poweron" -> poweron();
+                case "exit program" -> System.exit(0);
+            }
+        }
+
     }
 }
