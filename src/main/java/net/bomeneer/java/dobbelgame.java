@@ -9,7 +9,7 @@ public class dobbelgame {
 
 public static void main(int tcount){
     if(tcount == 0){
-        dobblebackground.dobblie6();
+        dobblebackground.dobblie(0);
         out.println("Wil je nog een keer dobbelen?, Ja of Nee?");
         String reply1 = input.nextLine();
         if (reply1.equals("ja") || reply1.equals("Ja") || reply1.equals("JA") || reply1.equals("j") || reply1.equals("J") || reply1.equals("yes") || reply1.equals("Yes") || reply1.equals("YES") || reply1.equals("y") || reply1.equals("Y")) {
@@ -22,7 +22,7 @@ public static void main(int tcount){
             }
         }
     else if(tcount == 1){
-            dobblebackground.dobblie100();
+            dobblebackground.dobblie(1);
             out.println("Wil je nog een keer dobbelen?, Ja of Nee?");
             reply1 = input.nextLine();
             if (reply1.equals("ja") || reply1.equals("Ja") || reply1.equals("JA") || reply1.equals("j") || reply1.equals("J") || reply1.equals("yes") || reply1.equals("Yes") || reply1.equals("YES") || reply1.equals("y") || reply1.equals("Y")) {

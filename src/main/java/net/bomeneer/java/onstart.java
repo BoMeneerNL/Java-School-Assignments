@@ -15,7 +15,7 @@ public class onstart {
 
         switch (command) {
             //Inventory 1 Starter
-            case "inventory-v1 --Normal --nm" -> {
+            case "inventory-v1" -> {
                 out.println(command + " is " + ltxt);
                 products.main();
             }
@@ -29,11 +29,11 @@ public class onstart {
             }
             case "dobbelgame --T=6" -> {
                 out.println(command + " is " + ltxt);
-                dobbelgame.throw6();
+                dobbelgame.main(0);
             }
             case "dobbelgame --T=100" -> {
                 out.println(command + " is " + ltxt);
-                dobbelgame.throw100();
+                dobbelgame.main(1);
             }
             case "thermostaat" ->{
                 out.println(command + " is " + ltxt);
