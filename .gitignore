@@ -2,3 +2,4 @@ uitleg-jarfile.txt
 .gradle
 build
 .idea
+/src/main/java/net/bomeneer/java/commands.txt

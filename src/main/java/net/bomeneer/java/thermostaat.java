@@ -4,21 +4,24 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 
-import static java.lang.System.out;
+import static java.lang.System.*;
 
 public class thermostaat {
     static String command; //Controlls CL Commands input
-    static byte settedtempinterval; //Contains tempinterval
+    static float settedtempinterval = 0.1f; //Contains tempinterval
     static float nowtemp = 20; //Contains the temperature that it is right now
     static float newtemp; //Contains the new temperature
     static boolean proceed = true; //Controlls Exit@error&leaving
     static boolean tempup; //acts as temperature up or down in changetemp()
-    static int begindayhour; //holds data with the beginning hour time of the DAY temperature
-    static int begindayminute; //Same as "begindayhour" but then the minutes
+    static int begindayhour = 7; //holds data with the beginning hour time of the DAY temperature
+    static int begindayminute = 0; //Same as "begindayhour" but then the minutes
+    static int enddayhour = 0;
+    static int enddayminute =0;
     static boolean enableddaytime = false; //Read if the user enabled or disabled Day-Night time based temperature
     static String[][] history = { {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null} };
     public static Scanner input = new Scanner(System.in);
     static LocalDateTime now;
+    static int gethistorycount;
 
     static void timeset(){
         now = LocalDateTime.now();
@@ -33,6 +36,18 @@ public class thermostaat {
         String hour = String.valueOf(now.getHour());
         String minute = String.valueOf(now.getMinute());
         String second = String.valueOf(now.getSecond());
+
+        if(hour == "0" || hour == "1" || hour == "2" || hour == "3" || hour == "4" || hour == "5" || hour == "6" || hour == "7" || hour == "8" || hour == "9"){
+            hour = "0" + hour;
+        }
+        if(minute == "0" || minute == "1" || minute == "2" || minute == "3" || minute == "4" || minute == "5" || minute == "6" || minute == "7" || minute == "8" || minute == "9"){
+            minute = "0" + minute;
+        }
+        if(second == "0" || second == "1" || second == "2" || second == "3" || second == "4" || second == "5" || second == "6" || second == "7" || second == "8" || second == "9"){
+            second = "0" + second;
+        }
+
+
     int looply = 9;
     boolean change = false;
     while (looply >= 0){
@@ -90,7 +105,7 @@ public class thermostaat {
             case 2 -> historycounter = 8;
             case 3 -> historycounter = 7;
             case 4 -> historycounter = 6;
-            //case 5 removed because 5 is already 5
+            //case 5 is not present because 5 is already 5
             case 6 -> historycounter = 4;
             case 7 -> historycounter = 3;
             case 8 -> historycounter = 2;
@@ -99,22 +114,30 @@ public class thermostaat {
             default -> throw new IllegalStateException("Unexpected value: " + historycounter);
         }
         while(historycounter <= 9){
-            out.println("an action" +(history[historycounter][0]) + " has been made on:" + history[historycounter][1] + "-" + history[historycounter][2]);
+            out.println("an action (" + history[historycounter][0] + ") has been made on: " + history[historycounter][1] + "-" + history[historycounter][2] + "-" + history[historycounter][3] + " " + history[historycounter][4] + ":" + history[historycounter][5] + ":" + history[historycounter][6]);
             historycounter++;
         }
     }
 
-    static void changetemp(byte tempinterval, double oldtemp, float tempnewtemp, boolean temptempup){
+    static void changetemp(float tempinterval, double oldtemp, float tempnewtemp, boolean temptempup){
         sethistory("changed temperature, from: " + oldtemp + " to ");
         if(temptempup){
             while(nowtemp < tempnewtemp){
                 nowtemp = nowtemp + tempinterval;
                 out.println(nowtemp);
             }
+            if(nowtemp > newtemp){
+                nowtemp = newtemp;
+                out.println(nowtemp);
+            }
         }
         else if(!temptempup){
             while(nowtemp > tempnewtemp){
                 nowtemp = nowtemp - tempinterval;
+                out.println(nowtemp);
+            }
+            if(nowtemp < newtemp){
+                nowtemp = newtemp;
                 out.println(nowtemp);
             }
 
@@ -142,30 +165,36 @@ public class thermostaat {
             command = input.nextLine();
             switch (command){
                 case "setinterval":
-                    out.println("To what interval do you want to set your thermostat? (only use full numbers)");
+                    out.println("To what interval do you want to set your thermostat? (if using decimals ONLY use a comma(,), not a dot(.) )");
                     out.print("SRCLA?/Thermostaat@192.168.1.99/SetInterval>");
                     try {
-                        settedtempinterval = input.nextByte();
+                        settedtempinterval = input.nextFloat();
                         out.println("New Interval: " + settedtempinterval);
                     }
-                    catch (InputMismatchException exception){
-                        out.println("Oops, this command only accepts between -127 and 127 and doesn't support decimal numbers");
-                    }
+                    catch (InputMismatchException exception){out.println("Oops, your action is canceled because: Invalid input (" + exception + ")"); }
                 break;
                 case "settemp":
                     out.println("What do you want to be the new temperature?");
                     out.print("SRCLA?/Thermostaat@192.168.1.99/SetNewTemp>");
-                    newtemp = input.nextFloat();
+                    try{newtemp = input.nextFloat();}
+                    catch (InputMismatchException exception){out.println("Oops, your input was not allowed");}
                     if (newtemp > nowtemp){tempup = true;}
                     else if(newtemp < nowtemp){tempup = false;}
                     changetemp(settedtempinterval,nowtemp,newtemp,tempup);
+                    sethistory("changed temperature from" + nowtemp + "°C to" + newtemp + "°C");
+                    break;
+                case "history":
+                    out.println("how many history spaces do you want to get?");
+                    try{gethistorycount = input.nextInt();}
+                    catch (InputMismatchException exception){out.println("Oops, your input is not allowed, only numbers are allowed");}
+                    if(gethistorycount <= 10){gethistory(gethistorycount);}
                     break;
                 case "changetimes":
                     sethistory("change day time");
-                    out.println("to what hour do you want to start the DAY time temperature?");
-                    out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayTime>");
-
-
+                    out.println("to what hour do you want to start the day time temperature?");
+                    out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayTime/SetHour>");
+                    begindayhour = input.nextInt();
+                    out.println("to what minute do you want to start the day time temperature?");
 
 
 
@@ -189,6 +218,7 @@ public class thermostaat {
                     out.println("Your current temperature is: " + nowtemp + "°C");
                     break;
                 case "icall geti":
+                case "vardump":
                     out.println("\n");
                     out.println("I(nternal)CALL GETInfo/VAR Dump: ");
                     out.println("VAR$command = " + command);
