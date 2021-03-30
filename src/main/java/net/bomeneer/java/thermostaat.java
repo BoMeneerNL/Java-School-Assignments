@@ -8,15 +8,17 @@ import static java.lang.System.*;
 
 public class thermostaat {
     static String command; //Controlls CL Commands input
-    static float settedtempinterval = 0.1f; //Contains tempinterval
+    static float settedtempinterval = 0.5f; //Contains tempinterval
     static float nowtemp = 20; //Contains the temperature that it is right now
     static float newtemp; //Contains the new temperature
     static boolean proceed = true; //Controlls Exit@error&leaving
     static boolean tempup; //acts as temperature up or down in changetemp()
     static int begindayhour = 7; //holds data with the beginning hour time of the DAY temperature
     static int begindayminute = 0; //Same as "begindayhour" but then the minutes
-    static int enddayhour = 0;
-    static int enddayminute =0;
+    static int enddayhour = 0; //same as begindayhour but for the night
+    static int enddayminute =0; //same as begindayminute but for the night
+    static float daytemp = 20;
+    static float nighttemp = 18.5f;
     static boolean enableddaytime = false; //Read if the user enabled or disabled Day-Night time based temperature
     static String[][] history = { {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null}, {null, null, null, null, null, null, null} };
     public static Scanner input = new Scanner(System.in);
@@ -36,17 +38,6 @@ public class thermostaat {
         String hour = String.valueOf(now.getHour());
         String minute = String.valueOf(now.getMinute());
         String second = String.valueOf(now.getSecond());
-
-        if(hour == "0" || hour == "1" || hour == "2" || hour == "3" || hour == "4" || hour == "5" || hour == "6" || hour == "7" || hour == "8" || hour == "9"){
-            hour = "0" + hour;
-        }
-        if(minute == "0" || minute == "1" || minute == "2" || minute == "3" || minute == "4" || minute == "5" || minute == "6" || minute == "7" || minute == "8" || minute == "9"){
-            minute = "0" + minute;
-        }
-        if(second == "0" || second == "1" || second == "2" || second == "3" || second == "4" || second == "5" || second == "6" || second == "7" || second == "8" || second == "9"){
-            second = "0" + second;
-        }
-
 
     int looply = 9;
     boolean change = false;
@@ -148,14 +139,13 @@ public class thermostaat {
         out.println("done, new temprature is: " + nowtemp);
     }
     static void main(){
-        out.println("""
-                *=========================================================*\r
-                |                  Bo's Java Assignments                  |\r
-                |                Version: 1.0 (JavBuild)                  |\r
-                |  https://github.com/BoMeneerNL/Java-School-Assignments  |\r
-                |                     STRCL-CLI/SRCLA                     |
-                |           https://github.com/BoMeneerNL/SRCLA           |
-                *=========================================================*""");
+        out.println("*=========================================================*\r\n" +
+                    "|                  Bo's Java Assignments                  |\r\n" +
+                    "|                Version: 1.0 (JavBuild)                  |\r\n" +
+                    "|  https://github.com/BoMeneerNL/Java-School-Assignments  |\r\n" +
+                    "|                     STRCL-CLI/SRCLA                     |\r\n" +
+                    "|           https://github.com/BoMeneerNL/SRCLA           |\r\n" +
+                    "*=========================================================*");
         poweron();
     }
     static void poweron(){
@@ -192,12 +182,27 @@ public class thermostaat {
                 case "changetimes":
                     sethistory("change day time");
                     out.println("to what hour do you want to start the day time temperature?");
-                    out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayTime/SetHour>");
+                    out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayTime/SetBeginDayHour>");
                     begindayhour = input.nextInt();
                     out.println("to what minute do you want to start the day time temperature?");
+                    begindayminute = input.nextInt();
+                    out.println("what hour do you want to end daytime and start night time?");
+                    enddayhour = input.nextInt();
+                    out.println("What minute do you want to end daytime and start night time?");
+                    enddayminute = input.nextInt();
+                        if (begindayhour > 23){
+                            out.println("begin day hour is not valid, beginhour is changed to 6:*(*)");
+                            begindayhour = 6;
+                        }
+                        if(begindayminute > 59){
+                            out.println("begin day hour is not valid, beginhour is changed to *(*):0");
+                            begindayminute = 0;
+                        }
 
-
-
+                    break;
+                case "see times":
+                    out.println("Daytime: " + begindayhour + ":" + begindayminute + " u");
+                    out.println("Nighttime" + enddayhour + ":" + enddayminute + "u");
                     break;
                 case "set day onoff":
                     if(enableddaytime){
@@ -212,6 +217,8 @@ public class thermostaat {
                         out.println("oops, something went wrong, nothing has changed");
                     }
                     break;
+                case "set momenttemps":
+                    break;
                 case "gettemp":
                 case "geti temp":
                     sethistory("Get Temperature");
@@ -221,15 +228,19 @@ public class thermostaat {
                 case "vardump":
                     out.println("\n");
                     out.println("I(nternal)CALL GETInfo/VAR Dump: ");
-                    out.println("VAR$command = " + command);
-                    out.println("VAR$settedtempinterval = " + settedtempinterval);
-                    out.println("VAR$nowtemp = " + nowtemp);
-                    out.println("VAR$newtemp = " + newtemp);
-                    out.println("VAR$proceed = " + proceed);
-                    out.println("VAR$tempup = " + tempup);
-                    out.println("VAR$begindayhour = " + begindayhour);
-                    out.println("VAR$begindayminute = " + begindayminute);
-                    out.println("VAR$enableddaytime = " + enableddaytime);
+
+                    out.println("VAR$command" + command);
+                    out.println("VAR$settedtempinterval" + settedtempinterval);
+                    out.println("VAR$nowtemp" + nowtemp);
+                    out.println("VAR$newtemp" + newtemp);
+                    out.println("VAR$proceed" + proceed);
+                    out.println("VAR$tempup" + tempup);
+                    out.println("VAR$begindayhour" + begindayhour);
+                    out.println("VAR$begindayminute" + begindayminute);
+                    out.println("VAR$enddayhour" + enddayhour);
+                    out.println("VAR$enddayminute" + enddayminute);
+                    out.println("VAR$daytemp" + daytemp);
+                    out.println("VAR$nighttemp" + nighttemp);
                     out.println("ARRAY.VAR$history[0] = " + history[0][0] + "," + history[0][1] + "," + history[0][2] + "," + history[0][3] + "," + history[0][4] + "," + history[0][5] + "," + history[0][6]);
                     out.println("ARRAY.VAR$history[1] = " + history[1][0] + "," + history[1][1] + "," + history[1][2] + "," + history[1][3] + "," + history[1][4] + "," + history[1][5] + "," + history[1][6]);
                     out.println("ARRAY.VAR$history[2] = " + history[2][0] + "," + history[2][1] + "," + history[2][2] + "," + history[2][3] + "," + history[2][4] + "," + history[2][5] + "," + history[2][6]);
