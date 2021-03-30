@@ -157,11 +157,9 @@ public class thermostaat {
                 case "setinterval":
                     out.println("To what interval do you want to set your thermostat? (if using decimals ONLY use a comma(,), not a dot(.) )");
                     out.print("SRCLA?/Thermostaat@192.168.1.99/SetInterval>");
-                    try {
-                        settedtempinterval = input.nextFloat();
-                        out.println("New Interval: " + settedtempinterval);
-                    }
+                    try {settedtempinterval = input.nextFloat();}
                     catch (InputMismatchException exception){out.println("Oops, your action is canceled because: Invalid input (" + exception + ")"); }
+                    out.println("New Interval: " + settedtempinterval);
                 break;
                 case "settemp":
                     out.println("What do you want to be the new temperature?");
@@ -183,13 +181,20 @@ public class thermostaat {
                     sethistory("change day time");
                     out.println("to what hour do you want to start the day time temperature?");
                     out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayTime/SetBeginDayHour>");
-                    begindayhour = input.nextInt();
+                    try{begindayhour = input.nextInt();}
+                    catch(InputMismatchException exception){out.println("only use integers");}
                     out.println("to what minute do you want to start the day time temperature?");
-                    begindayminute = input.nextInt();
+                    out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayTime/SetBeginDayMinute>");
+                    try{begindayminute = input.nextInt();}
+                    catch(InputMismatchException exception){out.println("only use integers");}
                     out.println("what hour do you want to end daytime and start night time?");
-                    enddayhour = input.nextInt();
+                    out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayTime/SetEndDayHour>");
+                    try{enddayhour = input.nextInt();}
+                    catch(InputMismatchException exception){out.println("only use integers");}
                     out.println("What minute do you want to end daytime and start night time?");
-                    enddayminute = input.nextInt();
+                    out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayTime/SetEndDayMinute>");
+                    try{enddayminute = input.nextInt();}
+                    catch(InputMismatchException exception){out.println("only use integers");}
                         if (begindayhour > 23){
                             out.println("begin day hour is not valid, beginhour is changed to 6:*(*)");
                             begindayhour = 6;
@@ -218,6 +223,15 @@ public class thermostaat {
                     }
                     break;
                 case "set momenttemps":
+                case "set dbtemps":
+                    out.println("To what temperature do you want to set the day time temperature? (only use ',' not a '.'");
+                    out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayNightTemp/SetDayTemp>");
+                    try{daytemp = input.nextFloat();}
+                    catch (InputMismatchException exception){out.println("only use an , instead of a .");}
+                    out.println("To what temperature do you want to set the night time temperature? (only use ',' not a '.'");
+                    out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayNightTemp/SetNightTemp>");
+                    try{nighttemp = input.nextFloat();}
+                    catch (InputMismatchException exception){out.println("only use an , instead of a .");}
                     break;
                 case "gettemp":
                 case "geti temp":
