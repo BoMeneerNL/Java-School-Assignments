@@ -255,17 +255,11 @@ public class thermostaat {
                     out.println("VAR$enddayminute" + enddayminute);
                     out.println("VAR$daytemp" + daytemp);
                     out.println("VAR$nighttemp" + nighttemp);
-                    out.println("ARRAY.VAR$history[0] = " + history[0][0] + "," + history[0][1] + "," + history[0][2] + "," + history[0][3] + "," + history[0][4] + "," + history[0][5] + "," + history[0][6]);
-                    out.println("ARRAY.VAR$history[1] = " + history[1][0] + "," + history[1][1] + "," + history[1][2] + "," + history[1][3] + "," + history[1][4] + "," + history[1][5] + "," + history[1][6]);
-                    out.println("ARRAY.VAR$history[2] = " + history[2][0] + "," + history[2][1] + "," + history[2][2] + "," + history[2][3] + "," + history[2][4] + "," + history[2][5] + "," + history[2][6]);
-                    out.println("ARRAY.VAR$history[3] = " + history[3][0] + "," + history[3][1] + "," + history[3][2] + "," + history[3][3] + "," + history[3][4] + "," + history[3][5] + "," + history[3][6]);
-                    out.println("ARRAY.VAR$history[4] = " + history[4][0] + "," + history[4][1] + "," + history[4][2] + "," + history[4][3] + "," + history[4][4] + "," + history[4][5] + "," + history[4][6]);
-                    out.println("ARRAY.VAR$history[5] = " + history[5][0] + "," + history[5][1] + "," + history[5][2] + "," + history[5][3] + "," + history[5][4] + "," + history[5][5] + "," + history[5][6]);
-                    out.println("ARRAY.VAR$history[6] = " + history[6][0] + "," + history[6][1] + "," + history[6][2] + "," + history[6][3] + "," + history[6][4] + "," + history[6][5] + "," + history[6][6]);
-                    out.println("ARRAY.VAR$history[7] = " + history[7][0] + "," + history[7][1] + "," + history[7][2] + "," + history[7][3] + "," + history[7][4] + "," + history[7][5] + "," + history[7][6]);
-                    out.println("ARRAY.VAR$history[8] = " + history[8][0] + "," + history[8][1] + "," + history[8][2] + "," + history[8][3] + "," + history[8][4] + "," + history[8][5] + "," + history[8][6]);
-                    out.println("ARRAY.VAR$history[9] = " + history[9][0] + "," + history[9][1] + "," + history[9][2] + "," + history[9][3] + "," + history[9][4] + "," + history[9][5] + "," + history[9][6]);
-                    break;
+                    int vdhis = 0;
+                    while(vdhis <= 9){
+                        out.println("ARRAY.VAR$history["+ vdhis +"] = " + history[vdhis][0] + "," + history[vdhis][1] + "," + history[vdhis][2] + "," + history[vdhis][3] + "," + history[vdhis][4] + "," + history[vdhis][5] + "," + history[vdhis][6]);
+                        vdhis++;
+                    }break;
                 case "poweroff":
                     poweroff();
                     break;
