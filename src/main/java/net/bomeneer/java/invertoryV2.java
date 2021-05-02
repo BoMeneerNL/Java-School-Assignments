@@ -137,8 +137,7 @@ public class invertoryV2 {
         out.println(tempstocked);
         out.print("Type Product       : ");
         out.println(tempproducttype);
-        if (tempplatforms.equals("NULL") || temppegirating == -1) {
-        } else {
+        if (!tempplatforms.equals("NULL") && temppegirating != -1) {
             out.print("Platforms          :");
             out.println(tempplatforms);
             out.print("PEGI Rating        : ");

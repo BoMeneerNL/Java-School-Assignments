@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import static java.lang.System.out; import static java.lang.System.in;
 import static net.bomeneer.java.invertoryV2.divider_s;
+import static net.bomeneer.java.invertoryV2.tempgameplatform;
 
 public class inventoryV3 {
 
@@ -16,7 +17,7 @@ public class inventoryV3 {
     public static String platforms;
     public static int pegirating;
     public static int newitems;
-    public static int jeff = 0;
+    public static boolean jeff = true;
     static products minecraftj = new products(23.95,"Games (prepaid cards)","Minecraft: Java Edition (Prepaid card)",20,"Windows, MacOS, Linux",7);
     static products minecraftb = new products(23.95, "Games (prepaid cards)", "Minecraft: Bedrock Edition (Prepaid card)", 20, "Windows, MacOS, Linux", 7);
     static products gtav = new products(50.55,"Games (Physical Copy)","GTA V", 10, "PlayStation 3, Xbox 360, PlayStation 4, Xbox One, Windows, PlayStation 5, Xbox Series X", 18);
@@ -160,19 +161,19 @@ public class inventoryV3 {
             try {
                 newitems = input.nextInt();
                 main();
-                jeff = 1;
+                jeff = false;
             }
             catch (InputMismatchException e){
                 out.println("oops, only integers are allowed (error_ Java:InputMismatchException)");
                 newitems = input.nextInt();
-                jeff = 0;
+                jeff = true;
             }
             finally {
                 main();
-                jeff = 1;
+                jeff = false;
             }
             //the if newitems <= 0 is handled @ main(){}
-        } while (jeff == 0);
+        } while (jeff);
     }
     public inventoryV3(float price, String producttype, String product, int stocked){
         inventoryV3.price = price;

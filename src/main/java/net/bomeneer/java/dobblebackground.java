@@ -1,8 +1,6 @@
 package net.bomeneer.java;
 
 import java.util.*;
-
-import static java.lang.System.nanoTime;
 import static java.lang.System.out;
 
 public class dobblebackground {

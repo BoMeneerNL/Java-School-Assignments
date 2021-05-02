@@ -52,12 +52,14 @@ public class thermostaat {
             history[looply][6] = second;
 
         }
-        else if(history[looply][0] == action && history[looply][1] == day && history[looply][2] == month && history[looply][3] == year && history[looply][4] == hour && history[looply][5] == minute && history[looply][6] == second){
-            looply = -1;
-             change = true;
-        }
-        else{
-            looply--;
+        else {
+            assert history[looply][0] != null;
+            if (!history[looply][0].equals(action) || !history[looply][1].equals(day) || !history[looply][2].equals(month) || !history[looply][3].equals(year) || !history[looply][4].equals(hour) || !history[looply][5].equals(minute) || !history[looply][6].equals(second)) {
+                looply--;
+            } else {
+                looply = -1;
+                 change = true;
+            }
         }
     }
         if(looply < 0){
@@ -83,8 +85,7 @@ public class thermostaat {
                 history[0][5] = minute;
                 history[0][6] = second;
             }
-            if(change){}
-            else{out.println("oops, something went wrong, exiting");System.exit(1);}
+            if (!change) {out.println("oops, something went wrong, exiting");System.exit(1);}
         }
         else{out.println("oops, something went wrong, exiting");System.exit(1);}
 
@@ -139,13 +140,14 @@ public class thermostaat {
         out.println("done, new temprature is: " + nowtemp);
     }
     static void main(){
-        out.println("*=========================================================*\r\n" +
-                    "|                  Bo's Java Assignments                  |\r\n" +
-                    "|                Version: 1.0 (JavBuild)                  |\r\n" +
-                    "|  https://github.com/BoMeneerNL/Java-School-Assignments  |\r\n" +
-                    "|                     STRCL-CLI/SRCLA                     |\r\n" +
-                    "|           https://github.com/BoMeneerNL/SRCLA           |\r\n" +
-                    "*=========================================================*");
+        out.println("""
+                *=========================================================*\r
+                |                  Bo's Java Assignments                  |\r
+                |                Version: 1.0 (JavBuild)                  |\r
+                |  https://github.com/BoMeneerNL/Java-School-Assignments  |\r
+                |                     STRCL-CLI/SRCLA                     |\r
+                |           https://github.com/BoMeneerNL/SRCLA           |\r
+                *=========================================================*""");
         poweron();
     }
     static void poweron(){
@@ -273,8 +275,8 @@ public class thermostaat {
     }
     static void poweroff(){
         sethistory("Powered off System");
-        int jeff = 0;
-        while (jeff == 0){
+        boolean jeff = true;
+        while (jeff){
             out.print("SRCLA?/SSH@NotConnected>");
             command = input.nextLine();
             switch (command) {
@@ -282,7 +284,7 @@ public class thermostaat {
                 case "poweroff", "icall getti" -> out.println("Could not execute command, err_noncon");
                 case "exit program" -> {
                     System.exit(0);
-                    jeff = 1;
+                    jeff = false;
                 }
             }
         }
