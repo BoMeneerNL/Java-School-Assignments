@@ -9,7 +9,7 @@ public class RockPaperScissors {
     public static void main() {
         // 0 = Steen, 1 = Papier,2 = Schaar
         // debug sequence 1 - Start
-        String debug = "NO";
+        String debug;
         out.println("Start?, click [ENTER]");
         debug = input.nextLine();
         input.nextLine();
@@ -37,9 +37,10 @@ public class RockPaperScissors {
         // RandomNames - End
         // PlayerAmount - Start
         while (playeramount <= 1 || playeramount >= 4) {
-            switch (playeramountfilltime){
-                case 0 -> out.println("hoeveel spelers? (2 of 3)");
-                default -> out.println("dit aantal spelers is niet mogelijk, je kan dit spelen met 2 of 3 spelers");
+            if (playeramountfilltime == 0) {
+                out.println("hoeveel spelers? (2 of 3)");
+            } else {
+                out.println("dit aantal spelers is niet mogelijk, je kan dit spelen met 2 of 3 spelers");
             }
             playeramountfilltime++;
             out.print("aantal spelers: ");
@@ -77,11 +78,7 @@ public class RockPaperScissors {
                 if (player2random || player3random) {
                     getrandomcount = randomnumber(10);
                     player1name = randomname[getrandomcount];
-                } else {
-                    out.println("[LOG]: Picked-up Warning: Error_==NotRandom, no action needed");
                 }
-            } else {
-                out.println("[LOG]: Picked-up Warning: Error_==NotRandom, no action needed");
             }
         }
         while (player2name.equals(player3name)) {
@@ -93,267 +90,150 @@ public class RockPaperScissors {
             }
         }
         // FixConflictedNames - End
-        // ChoosingHand - Start
-        // ChoosingHand - End
         // AutoSelector - Start
         if (playeramount == 2) {
             while (player1wins < 3 && player2wins < 3) {
                 player1hand = randomnumber(2);
                 player2hand = randomnumber(2);
-                if(player1hand == 0) {
-                    if(player2hand == 0) {
-                        out.println("Gelijk, beide Steen");
-                    }else if(player2hand == 1){
-                        player2wins = player2wins + 1;
-                        out.print("Speler 2(");
-                        out.print(player2name);
-                        out.println(") heeft deze ronde gewonnen (Papier (Speler 2) > Steen (Speler1))");
-                    }else if(player2hand == 2){
-                        player1wins = player1wins + 1;
-                        out.print("Speler 1(");
-                        out.print(player1name);
-                        out.println(") heeft deze ronde gewonnen (Steen (Speler1) > Schaar (Speler 2))");
-                    }else{
-                        out.println(oops_fuckup);
+                String playerhandconcat = String.valueOf(player1hand + player2hand);
+                switch (playerhandconcat) {
+                    case "00" -> out.println("Gelijk, beide Steen");
+                    case "01" -> {
+                        out.println("Speler 2(" + player2name + ") heeft deze ronde gewonnen (Papier (Speler 2) > Steen (Speler1))");
+                        player2wins++;
                     }
-                }else if(player1hand == 1){
-                    if(player2hand == 0) {
-                        player1wins = player1wins + 1;
-                        out.print("Speler 1(");
-                        out.print(player1name);
-                        out.println(") heeft deze ronde gewonnen (Papier (Speler 1) > Steen (Speler 2))");
-                    }else if(player2hand == 1){
-                        out.println("Gelijk, beide Papier");
-                    }else if(player2hand == 2){
-                        player2wins = player2wins + 1;
-                        out.print("Speler 2(");
-                        out.print(player2name);
-                        out.println(") heeft deze ronde gewonnen (Schaar (Speler 2) > Papier (Speler 1))");
-                    }else{
-                        out.println(oops_fuckup);
+                    case "02" -> {
+                        player1wins++;
+                        out.println("Speler 1(" + player1name + ") heeft deze ronde gewonnen (Steen (Speler1) > Schaar (Speler 2))");
                     }
-                }else if(player1hand == 2){
-                    if(player2hand == 0) {
-                        player2wins = player2wins + 1;
-                        out.print("Speler 2(");
-                        out.print(player2name);
-                        out.println(") heeft deze ronde gewonnen (Papier (Speler 2) > Steen (Speler 1))");
-                    }else if(player2hand == 1){
-                        out.print("Speler 1(");
-                        out.print(player1name);
-                        out.println(") heeft deze ronde gewonnen (Schaar (Speler 1) > Papier (Speler 2))");
-                    }else if(player2hand == 2){
-                        out.println("Gelijk, beide Schaar");
-                    }else{
-                        out.println(oops_fuckup);
+                    case "10" -> {
+                        out.println("Speler 1(" + player1name + ") heeft deze ronde gewonnen (Papier (Speler 1) > Steen (Speler 2))");
+                        player1wins++;
                     }
-                }else{
-                    out.println(oops_fuckup);
+                    case "11" -> out.println("Gelijk, beide Papier");
+                    case "12" -> {
+                        out.println("Speler 2(" + player2name + ") heeft deze ronde gewonnen (Schaar (Speler 2) > Papier (Speler 1))");
+                        player2wins++;
+                    }
+                    case "20" -> {
+                        out.println("Speler 2(" + player2name + ") heeft deze ronde gewonnen (Papier (Speler 2) > Steen (Speler 1))");
+                        player2wins++;
+                    }
+                    case "21" -> {
+                        out.println("Speler 1(" + player1name + ") heeft deze ronde gewonnen (Schaar (Speler 1) > Papier (Speler 2))");
+                        player1wins++;
+                    }
+                    case "22" -> out.println("Gelijk, beide Schaar");
+                    default -> out.println(oops_fuckup);
                 }
             }
         }
-        if (playeramount == 3) {
+        else{
             while (player1wins < 3 && player2wins < 3 && player3wins < 3) {
                 player1hand = randomnumber(2);
                 player2hand = randomnumber(2);
                 player3hand = randomnumber(2);
-                if(player1hand == 0){
-                    if(player2hand == 0){
-                        if(player3hand == 0){
-                            out.println("Iedereen heeft hetzelfde, iedereen heeft steen");
-                        }else if(player3hand == 1){
-                            out.print("Speler 3(");
-                            out.print(player3name);
-                            out.println(") heeft deze ronde gewonnen (Papier (Speler 3) > Steen (Speler 1 & 2))");
-                            player3wins = player3wins + 1;
-                        }else if(player3hand == 2){
-                            out.print("Speler 1 & 2(");
-                            out.print(player1name);
-                            out.print(" & ");
-                            out.print(player2name);
-                            out.println(") heeft deze ronde gewonnen (Steen (Speler 1 & 2 ) > Schaar (Speler 3)");
-                            player1wins = player1wins + 1;
-                            player2wins = player2wins + 1;
-                        }else{
-                            out.println(oops_fuckup);
-                        }
-                    }else if(player2hand == 1){
-                        if(player3hand == 0){
-                            out.print("Speler 2(");
-                            out.print(player2name);
-                            out.println(") heeft deze ronde gewonnen (Papier (Speler 2) > Steen (Speler 1 & 3))");
-                            player2wins = player2wins + 1;
-                        }else if(player3hand == 1){
-                            out.print("Speler 2 & 3(");
-                            out.print(player2name);
-                            out.print(" & ");
-                            out.print(player3name);
-                            out.println(") heeft deze ronde gewonnen (Papier (Speler 2 & 3) > Steen (Speler 1))");
-                            player2wins = player2wins + 1;
-                            player3wins = player3wins + 1;
-                        }else if(player3hand == 2){
-                            out.println("gelijk, alles (SPS_i1)");
-                        }else{
-                            out.println(oops_fuckup);
-                        }
-                    }else if(player2hand == 2){
-                        if(player3hand == 0){
-                            out.print("Speler 1 & 3(");
-                            out.print(player1name);
-                            out.print(" & ");
-                            out.print(player3name);
-                            out.println(") heeft deze ronde gewonnen (Steen (Speler 1 & 3) > Schaar (Speler 2))");
-                            player1wins = player1wins + 1;
-                            player3wins = player3wins + 1;
-                        }else if(player3hand == 1){
-                            out.println("gelijk, alles (SPS_i1)");
-                        }else if(player3hand == 2){
-                            out.print("Speler 1(");
-                            out.print(player1name);
-                            out.println(") heeft deze ronde gewonnen (Steen (Speler 1) > Schaar (Speler 2 & 3))");
-                            player1wins = player1wins + 1;
-                        }else{
-                            out.println(oops_fuckup);
-                        }
+                String playerhandconcat = String.valueOf(player1hand + player2hand + player3hand);
+                switch (playerhandconcat) {
+                    case "000" -> out.println("Iedereen heeft hetzelfde, iedereen heeft steen");
+                    case "001" -> {
+                        out.println("Speler 3(" + player3name + ") heeft deze ronde gewonnen (Papier (Speler 3) > Steen (Speler 1 & 2))");
+                        player3wins++;
                     }
-                }
-                if(player1hand == 1){
-                    if(player2hand == 0){
-                        if(player3hand == 0){
-                            out.print("Speler 1(");
-                            out.print(player1name);
-                            out.println(") heeft deze ronde gewonnen (Papier (Speler 1) > Steen (Speler 2 & 3))");
-                            player1wins = player1wins + 1;
-                        }else if(player3hand == 1){
-                            out.print("Speler 1 & 3(");
-                            out.print(player1name);
-                            out.print(" & ");
-                            out.print(player3name);
-                            out.println(") heeft deze ronde gewonnen (Papier (Speler 1 & 3) > Steen (Speler 2))");
-                            player1wins = player1wins + 1;
-                            player3wins = player3wins + 1;
-                        }else if(player3hand == 2){
-                            out.println("gelijk, alles (SPS_i1)");
-                        }else{
-                            out.println(oops_fuckup);
-                        }
-                    }else if(player2hand == 1){
-                        if(player3hand == 0){
-                            out.print("Speler 1 & 2(");
-                            out.print(player1name);
-                            out.print(" & ");
-                            out.print(player2name);
-                            out.println(") heeft deze ronde gewonnen (Papier (Speler 1 & 2) > Steen (Speler 3))");
-                            player1wins = player1wins + 1;
-                            player2wins = player2wins + 1;
-                        }else if(player3hand == 1){
-                            out.println("Iedereen heeft hetzelfde, iedereen heeft papier");
-                        }else if(player3hand == 2){
-                            out.print("Speler 3(");
-                            out.print(player3name);
-                            out.println(") heeft deze ronde gewonnen (Schaar (Speler 3) > Papier (Speler 1 & 2))");
-                            player3wins = player3wins + 1;
-                        }else{
-                            out.println(oops_fuckup);
-                        }
-                    }else if(player2hand == 2){
-                        if(player3hand == 0){
-                            out.println("gelijk, alles (SPS_i1)");
-                        }else if(player3hand == 1){
-                            out.print("Speler 2(");
-                            out.print(player2name);
-                            out.println(") heeft deze ronde gewonnen (Schaar (Speler 2) > Papier (Speler 1 & 3))");
-                            player2wins = player2wins + 1;
-                        }else if(player3hand == 2){
-                            out.print("Speler 2 & 3(");
-                            out.print(player2name);
-                            out.print(" & ");
-                            out.print(player3name);
-                            out.println(") heeft deze ronde gewonnen (Schaar (Speler 2 & 3) > Papier (Speler 1))");
-                            player2wins = player2wins + 1;
-                            player3wins = player3wins + 1;
-                        }else{
-                            out.println(oops_fuckup);
-                        }
+                    case "002" -> {
+                        out.println("Speler 1 & 2(" + " & " + player2name + ") heeft deze ronde gewonnen (Steen (Speler 1 & 2 ) > Schaar (Speler 3)");
+                        player1wins++;
+                        player2wins++;
                     }
-                }
-                if(player1hand == 2){
-                    if(player2hand == 0){
-                        if(player3hand == 0){
-                            out.print("Speler 2 & 3(");
-                            out.print(player2name);
-                            out.print(" & ");
-                            out.print(player3name);
-                            out.println(") heeft deze ronde gewonnen (Steen (Speler 2 & 3) > Schaar (Speler 1))");
-                            player2wins = player2wins + 1;
-                            player3wins = player3wins + 1;
-                        }else if(player3hand == 1){
-                            out.println("gelijk, alles (SPS_i1)");
-                        }else if(player3hand == 2){
-                            out.print("Speler 2(");
-                            out.print(player2name);
-                            out.println(") heeft deze ronde gewonnen (Steen (Speler 2) > Schaar (Speler 1 & 3))");
-                            player2wins = player2wins + 1;
-                        }else{
-                            out.println(oops_fuckup);
-                        }
-                    }else if(player2hand == 1){
-                        if(player3hand == 0){
-                            out.println("gelijk, alles (SPS_i1)");
-                        }else if(player3hand == 1){
-                            out.print("Speler 1(");
-                            out.print(player1name);
-                            out.println(") heeft deze ronde gewonnen (Schaar (Speler 1) > Papier (Speler 2 & 3))");
-                            player1wins = player1wins + 1;
-                        }else if(player3hand == 2){
-                            out.print(player1name);
-                            out.print(" & ");
-                            out.print(player3name);
-                            out.println(") heeft deze ronde gewonnen (Schaar (Speler 1 & 3) > Papier (Speler 2))");
-                            player1wins = player1wins + 1;
-                            player3wins = player3wins + 1;
-                        }else{
-                            out.println(oops_fuckup);
-                        }
-                    }else if(player2hand == 2){
-                        if(player3hand == 0){
-                            out.print("Speler 3(");
-                            out.print(player3name);
-                            out.println(") heeft deze ronde gewonnen (Steen (Speler 3) > Schaar (Speler 1 & 2))");
-                            player3wins = player3wins + 1;
-                        }else if(player3hand == 1){
-                            out.print("Speler 1 & 2(");
-                            out.print(player1name);
-                            out.print(" & ");
-                            out.print(player2name);
-                            out.println(") heeft deze ronde gewonnen (Schaar (Speler 1 & 2) > Papier (Speler 3))");
-                            player1wins = player1wins + 1;
-                            player2wins = player2wins + 1;
-                        }else if(player3hand == 2){
-                            out.println("Iedereen heeft hetzelfde, iedereen heeft schaar");
-                        }else{
-                            out.println(oops_fuckup);
-                        }
+                    case "010" -> {
+                        out.println("Speler 2(" + player2name + ") heeft deze ronde gewonnen (Papier (Speler 2) > Steen (Speler 1 & 3))");
+                        player2wins++;
                     }
+                    case "011" -> {
+                        out.println("Speler 2 & 3(" + player2name + " & " + player3name + ") heeft deze ronde gewonnen (Papier (Speler 2 & 3) > Steen (Speler 1))");
+                        player2wins++;
+                        player3wins++;
+                    }
+                    case "012", "021", "102", "120", "201", "210" -> out.println("gelijk, alles (SPS_i1)");
+                    case "020" -> {
+                        out.println("Speler 1 & 3(" + player1name + " & " + player3name + ") heeft deze ronde gewonnen (Steen (Speler 1 & 3) > Schaar (Speler 2))");
+                        player1wins++;
+                        player3wins++;
+                    }
+                    case "022" -> {
+                        out.println("Speler 1(" + player1name + ") heeft deze ronde gewonnen (Steen (Speler 1) > Schaar (Speler 2 & 3))");
+                        player1wins++;
+                    }
+                    case "100" -> {
+                        out.println("Speler 1(" + player1name + ") heeft deze ronde gewonnen (Papier (Speler 1) > Steen (Speler 2 & 3))");
+                        player1wins++;
+                    }
+                    case "101" -> {
+                        out.println("Speler 1 & 3(" + player1name + " & " + player3name + ") heeft deze ronde gewonnen (Papier (Speler 1 & 3) > Steen (Speler 2))");
+                        player1wins++;
+                        player3wins++;
+                    }
+                    case "110" -> {
+                        out.println("Speler 1 & 2(" + player1name + " & " + player2name + ") heeft deze ronde gewonnen (Papier (Speler 1 & 2) > Steen (Speler 3))");
+                        player1wins++;
+                        player2wins++;
+                    }
+                    case "111" -> out.println("Iedereen heeft hetzelfde, iedereen heeft papier");
+                    case "112" -> {
+                        out.println("Speler 3(" + player3name + ") heeft deze ronde gewonnen (Schaar (Speler 3) > Papier (Speler 1 & 2))");
+                        player3wins++;
+                    }
+                    case "121" -> {
+                        out.println("Speler 2(" + player2name + ") heeft deze ronde gewonnen (Schaar (Speler 2) > Papier (Speler 1 & 3))");
+                        player2wins++;
+                    }
+                    case "122" -> {
+                        out.println("Speler 2 & 3(" + player2name + " & " + player3name + ") heeft deze ronde gewonnen (Schaar (Speler 2 & 3) > Papier (Speler 1))");
+                        player2wins++;
+                        player3wins++;
+                    }
+                    case "200" -> {
+                        out.println("Speler 2 & 3(" + player2name + " & " + player3name + ") heeft deze ronde gewonnen (Steen (Speler 2 & 3) > Schaar (Speler 1))");
+                        player2wins++;
+                        player3wins++;
+                    }
+                    case "202" -> {
+                        out.println("Speler 2(" + player2name + ") heeft deze ronde gewonnen (Steen (Speler 2) > Schaar (Speler 1 & 3))");
+                        player2wins++;
+                    }
+                    case "211" -> {
+                        out.println("Speler 1(" + player1name + ") heeft deze ronde gewonnen (Schaar (Speler 1) > Papier (Speler 2 & 3))");
+                        player1wins++;
+                    }
+                    case "212" -> {
+                        out.println(player1name + " & " + player3name + ") heeft deze ronde gewonnen (Schaar (Speler 1 & 3) > Papier (Speler 2))");
+                        player1wins++;
+                        player3wins++;
+                    }
+                    case "220" -> {
+                        out.println("Speler 3(" + player3name + ") heeft deze ronde gewonnen (Steen (Speler 3) > Schaar (Speler 1 & 2))");
+                        player3wins++;
+                    }
+                    case "221" -> {
+                        out.println("Speler 1 & 2(" + player1name + " & " + player2name + ") heeft deze ronde gewonnen (Schaar (Speler 1 & 2) > Papier (Speler 3))");
+                        player1wins++;
+                        player2wins++;
+                    }
+                    case "222" -> out.println("Iedereen heeft hetzelfde, iedereen heeft schaar");
+                    default -> out.println(oops_fuckup);
                 }
             }
         }
-        if (player1wins >= 3) {out.println("Player 1(" + player1name + ") wins");}
-        if (player2wins >= 3) {out.println("Player 2 (" + player2name + ") wins");}
-        if (player3wins >= 3) {out.println("Player 3 (" + player3name + ") wins");}
+        if (player1wins >= 3) {out.println("Player 1("+player1name+") wins");}
+        if (player2wins >= 3) {out.println("Player 2 ("+player2name+") wins");}
+        if (player3wins >= 3) {out.println("Player 3 ("+player3name+") wins");}
         if (debug.equals("ja") || debug.equals("Ja") || debug.equals("JA")) {
-            out.print("VAR$player1wins:");
-            out.println(player1wins);
-            out.print("VAR$player2wins:");
-            out.println(player2wins);
-            out.print("VAR$player3wins:");
-            out.println(player3wins);
-            out.print("Latest Hand Data/LHD Player 1:");
-            out.println(player1hand);
-            out.print("Latest Hand Data/LHD Player 2:");
-            out.println(player2hand);
-            out.print("Latest Hand Data/LHD Player 3:");
-            out.println(player3hand);
+            out.println("VAR$player1wins:"+player1wins);
+            out.println("VAR$player2wins:"+player2wins);
+            out.println("VAR$player3wins:"+player3wins);
+            out.println("Latest Hand Data/LHD Player 1:"+player1hand);
+            out.println("Latest Hand Data/LHD Player 2:"+player2hand);
+            out.println("Latest Hand Data/LHD Player 3:"+player3hand);
         }
     }
     private static int randomnumber(int max) {
