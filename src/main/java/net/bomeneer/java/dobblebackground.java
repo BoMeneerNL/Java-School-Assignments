@@ -1,6 +1,7 @@
 package net.bomeneer.java;
 
-import java.util.*;
+import java.util.Random;
+
 import static java.lang.System.out;
 
 public class dobblebackground {
@@ -17,16 +18,21 @@ public class dobblebackground {
     static String space = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     static Random random = new Random();
     static int uitkomst;
-    public static void dobblie(int typethrow){
-        if(typethrow == 0){uitkomst = random.nextInt(6);}
-        else if(typethrow == 1){uitkomst = random.nextInt(100);}
-        else {
+
+    public static void dobblie(int typethrow) {
+        if (typethrow == 0) {
+            uitkomst = random.nextInt(6);
+        } else if (typethrow == 1) {
+            uitkomst = random.nextInt(100);
+        } else {
             out.println("Oops, an unfixable error has occured");
             System.exit(1);
         }
         uitkomst++;
         forlooper();
-        if(typethrow == 1){forlooper2();}
+        if (typethrow == 1) {
+            forlooper2();
+        }
         forlooper();
         out.println(space);
         switch (uitkomst) {
@@ -37,14 +43,15 @@ public class dobblebackground {
             case 5 -> out.println(t5);
             case 6 -> out.println(t6);
         }
-        if(uitkomst >= 7 && uitkomst <= 100){
+        if (uitkomst >= 7 && uitkomst <= 100) {
             out.println(dobble1 + uitkomst + dobble2);
         }
 
-        out.println("You've thrown"+ " " + uitkomst);
+        out.println("You've thrown" + " " + uitkomst);
     }
-    public static void forlooper(){
-        while(flnow <=6){
+
+    public static void forlooper() {
+        while (flnow <= 6) {
             out.println(space);
             switch (flnow) {
                 case 1 -> out.println(t1);
@@ -54,7 +61,11 @@ public class dobblebackground {
                 case 5 -> out.println(t5);
                 case 6 -> out.println(t6);
             }
-            try {Thread.sleep(200);} catch (InterruptedException e) {e.printStackTrace(); }
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             flnow++;
         }
         flnow = 0;
@@ -67,13 +78,17 @@ public class dobblebackground {
 
             if (flnow <= 100) {
                 out.println(dobble1 + flnow + dobble2);
-            }else {
+            } else {
                 out.println("Oops, Out of range :(,OEF");
             }
             flnow++;
-            try {Thread.sleep(200);} catch (InterruptedException e) {e.printStackTrace();}
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
 
-        }
     }
+}

@@ -1,6 +1,6 @@
 package net.bomeneer.java;
 
-import java.util.*;
+import java.util.Scanner;
 
 import static java.lang.System.in;
 import static java.lang.System.out;
@@ -12,7 +12,7 @@ public class onstart {
         out.println("What program do you want to start?:");
         Scanner input = new Scanner(in);
         String command = input.nextLine();
-        if(command == "inventory-v1" ||command == "inventory-v2" ||command == "inventory-v3" ||command == "dobbelgame --T=6" ||command == "dobbelgame --T=100" ||command == "thermostaat" || command == "rockpaperscissors"){
+        if (command == "inventory-v1" || command == "inventory-v2" || command == "inventory-v3" || command == "dobbelgame --T=6" || command == "dobbelgame --T=100" || command == "thermostaat" || command == "rockpaperscissors") {
             out.println(command + " is " + ltxt);
         }
         switch (command) {

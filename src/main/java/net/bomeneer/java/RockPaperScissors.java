@@ -1,11 +1,15 @@
 package net.bomeneer.java;
 
-import java.util.*;
-import static java.lang.System.*;
+import java.util.Random;
+import java.util.Scanner;
+
+import static java.lang.System.in;
+import static java.lang.System.out;
 
 public class RockPaperScissors {
     private static final Random random = new Random();
     private static final Scanner input = new Scanner(in);
+
     public static void main() {
         // 0 = Steen, 1 = Papier,2 = Schaar
         // debug sequence 1 - Start
@@ -73,7 +77,7 @@ public class RockPaperScissors {
         }
         // ChooseNames - End
         // FixConflictedNames - Start
-        if(player1name.equals(player2name) || player1name.equals(player3name)) {
+        if (player1name.equals(player2name) || player1name.equals(player3name)) {
             if (player1random) {
                 if (player2random || player3random) {
                     getrandomcount = randomnumber(10);
@@ -127,8 +131,7 @@ public class RockPaperScissors {
                     default -> out.println(oops_fuckup);
                 }
             }
-        }
-        else{
+        } else {
             while (player1wins < 3 && player2wins < 3 && player3wins < 3) {
                 player1hand = randomnumber(2);
                 player2hand = randomnumber(2);
@@ -224,18 +227,25 @@ public class RockPaperScissors {
                 }
             }
         }
-        if (player1wins >= 3) {out.println("Player 1("+player1name+") wins");}
-        if (player2wins >= 3) {out.println("Player 2 ("+player2name+") wins");}
-        if (player3wins >= 3) {out.println("Player 3 ("+player3name+") wins");}
+        if (player1wins >= 3) {
+            out.println("Player 1(" + player1name + ") wins");
+        }
+        if (player2wins >= 3) {
+            out.println("Player 2 (" + player2name + ") wins");
+        }
+        if (player3wins >= 3) {
+            out.println("Player 3 (" + player3name + ") wins");
+        }
         if (debug.equals("ja") || debug.equals("Ja") || debug.equals("JA")) {
-            out.println("VAR$player1wins:"+player1wins);
-            out.println("VAR$player2wins:"+player2wins);
-            out.println("VAR$player3wins:"+player3wins);
-            out.println("Latest Hand Data/LHD Player 1:"+player1hand);
-            out.println("Latest Hand Data/LHD Player 2:"+player2hand);
-            out.println("Latest Hand Data/LHD Player 3:"+player3hand);
+            out.println("VAR$player1wins:" + player1wins);
+            out.println("VAR$player2wins:" + player2wins);
+            out.println("VAR$player3wins:" + player3wins);
+            out.println("Latest Hand Data/LHD Player 1:" + player1hand);
+            out.println("Latest Hand Data/LHD Player 2:" + player2hand);
+            out.println("Latest Hand Data/LHD Player 3:" + player3hand);
         }
     }
+
     private static int randomnumber(int max) {
         return random.nextInt(max + 1);
     }
