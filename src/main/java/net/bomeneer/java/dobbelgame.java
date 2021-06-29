@@ -38,9 +38,7 @@ public class dobbelgame {
 
             }
         }
-
     }
-
     public static void redo(int tcount2) {
         main(tcount2);
     }

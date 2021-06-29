@@ -32,26 +32,21 @@ public class thermostaat {
     //Set history tactic = populate 10>0 if 0 is already populated terminate data of 10 and move 1 spot up
     static void sethistory(String action) {
         timeset();
-        String day = String.valueOf(now.getDayOfMonth());
-        String month = String.valueOf(now.getMonthValue());
-        String year = String.valueOf(now.getYear());
-        String hour = String.valueOf(now.getHour());
-        String minute = String.valueOf(now.getMinute());
-        String second = String.valueOf(now.getSecond());
+        String[] moment = {String.valueOf(now.getDayOfMonth()),String.valueOf(now.getMonthValue()),String.valueOf(now.getYear()),String.valueOf(now.getHour()),String.valueOf(now.getMinute()),String.valueOf(now.getSecond())};
         int looply = 9;
         boolean change = false;
         while (looply >= 0) {
             if (history[looply][0] == null && history[looply][1] == null && history[looply][2] == null && history[looply][3] == null && history[looply][4] == null && history[looply][5] == null && history[looply][6] == null) {
                 history[looply][0] = action;
-                history[looply][1] = day;
-                history[looply][2] = month;
-                history[looply][3] = year;
-                history[looply][4] = hour;
-                history[looply][5] = minute;
-                history[looply][6] = second;
+                history[looply][1] = moment[0];
+                history[looply][2] = moment[1];
+                history[looply][3] = moment[2];
+                history[looply][4] = moment[3];
+                history[looply][5] = moment[4];
+                history[looply][6] = moment[5];
 
             } else {
-                if (!history[looply][0].equals(action) || !history[looply][1].equals(day) || !history[looply][2].equals(month) || !history[looply][3].equals(year) || !history[looply][4].equals(hour) || !history[looply][5].equals(minute) || !history[looply][6].equals(second)) {
+                if (!history[looply][0].equals(action) || !history[looply][1].equals(moment[0]) || !history[looply][2].equals(moment[1]) || !history[looply][3].equals(moment[2]) || !history[looply][4].equals(moment[3]) || !history[looply][5].equals(moment[4]) || !history[looply][6].equals(moment[5])) {
                     looply--;
                 } else {
                     looply = -1;
@@ -73,12 +68,12 @@ public class thermostaat {
                     shuffle--;
                 }
                 history[0][0] = action;
-                history[0][1] = day;
-                history[0][2] = month;
-                history[0][3] = year;
-                history[0][4] = hour;
-                history[0][5] = minute;
-                history[0][6] = second;
+                history[0][1] = moment[0];
+                history[0][2] = moment[1];
+                history[0][3] = moment[2];
+                history[0][4] = moment[3];
+                history[0][5] = moment[4];
+                history[0][6] = moment[5];
             }
             if (!change) {
                 out.println("oops, something went wrong, exiting");
@@ -139,14 +134,13 @@ public class thermostaat {
     }
 
     static void main() {
-        out.println("""
-                *=========================================================*\r
-                |                  Bo's Java Assignments                  |\r
-                |                Version: 1.0 (JavBuild)                  |\r
-                |  https://github.com/BoMeneerNL/Java-School-Assignments  |\r
-                |                     STRCL-CLI/SRCLA                     |\r
-                |           https://github.com/BoMeneerNL/SRCLA           |\r
-                *=========================================================*""");
+        out.println("*=========================================================*\r\n" +
+                    "|                  Bo's Java Assignments                  |\r\n" +
+                    "|                Version: 1.0 (JavBuild)                  |\r\n" +
+                    "|  https://github.com/BoMeneerNL/Java-School-Assignments  |\r\n" +
+                    "|                     STRCL-CLI/SRCLA                     |\r\n" +
+                    "|           https://github.com/BoMeneerNL/SRCLA           |\r\n" +
+                    "*=========================================================*");
         poweron();
     }
 
@@ -156,59 +150,49 @@ public class thermostaat {
             out.print("SRCLA?/Thermostaat@192.168.1.99>");
             command = input.nextLine();
             switch (command) {
-                case "setinterval":
+                case "setinterval" ->{
                     out.println("To what interval do you want to set your thermostat? (if using decimals ONLY use a comma(,), not a dot(.) )");
                     out.print("SRCLA?/Thermostaat@192.168.1.99/SetInterval>");
-                    try {
-                        settedtempinterval = input.nextFloat();
-                    } catch (InputMismatchException exception) {
-                        out.println("Oops, your action is canceled because: Invalid input (" + exception + ")");
-                    }
+                    try { settedtempinterval = input.nextFloat(); }
+
+                    catch (InputMismatchException exception) { out.println("Oops, your action is canceled because: Invalid input (" + exception + ")"); }
                     out.println("New Interval: " + settedtempinterval);
-                    break;
-                case "settemp":
+                }
+                case "settemp" ->{
                     out.println("What do you want to be the new temperature?");
                     out.print("SRCLA?/Thermostaat@192.168.1.99/SetNewTemp>");
-                    try {
-                        newtemp = input.nextFloat();
-                    } catch (InputMismatchException exception) {
-                        out.println("Oops, your input was not allowed");
-                    }
-                    if (newtemp > nowtemp) {
-                        tempup = true;
-                    } else if (newtemp < nowtemp) {
-                        tempup = false;
-                    }
+                    try { newtemp = input.nextFloat(); }
+
+                    catch (InputMismatchException exception) { out.println("Oops, your input was not allowed"); }
+                    if (newtemp > nowtemp) { tempup = true; }
+
+                    else if (newtemp < nowtemp) { tempup = false; }
                     changetemp(settedtempinterval, nowtemp, newtemp, tempup);
                     sethistory("changed temperature from" + nowtemp + "°C to" + newtemp + "°C");
-                    break;
-                case "history":
+                }
+                case "history" ->{
                     out.println("how many history spaces do you want to get?");
-                    try {
-                        gethistorycount = input.nextInt();
-                    } catch (InputMismatchException exception) {
-                        out.println("Oops, your input is not allowed, only numbers are allowed");
-                    }
-                    if (gethistorycount <= 10) {
-                        gethistory(gethistorycount);
-                    }
-                    break;
-                case "changetimes":
+                    try { gethistorycount = input.nextInt(); }
+
+                    catch (InputMismatchException exception) { out.println("Oops, your input is not allowed, only numbers are allowed"); }
+
+                    if (gethistorycount <= 10) { gethistory(gethistorycount); }
+            }
+                case "changetimes" ->{
                     sethistory("change day time");
                     out.println("to what hour do you want to start the day time temperature?");
                     out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayTime/SetBeginDayHour>");
-                    try {
-                        begindayhour = input.nextInt();
-                    } catch (InputMismatchException exception) {
-                        out.println("only use integers");
-                    }
+                    try { begindayhour = input.nextInt(); }
+
+                    catch (InputMismatchException exception) { out.println("only use integers"); }
+
                     out.println("to what minute do you want to start the day time temperature?");
                     out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayTime/SetBeginDayMinute>");
-                    try {
-                        begindayminute = input.nextInt();
-                    } catch (InputMismatchException exception) {
-                        out.println("only use integers");
-                    }
+
+                    try { begindayminute = input.nextInt(); }
+
+                    catch (InputMismatchException exception) { out.println("only use integers"); }
+
                     out.println("what hour do you want to end daytime and start night time?");
                     out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayTime/SetEndDayHour>");
                     try {
@@ -231,13 +215,12 @@ public class thermostaat {
                         out.println("begin day hour is not valid, beginhour is changed to *(*):0");
                         begindayminute = 0;
                     }
-
-                    break;
-                case "see times":
+            }
+                case "see times" ->{
                     out.println("Daytime: " + begindayhour + ":" + begindayminute + " u");
                     out.println("Nighttime" + enddayhour + ":" + enddayminute + "u");
-                    break;
-                case "set day onoff":
+            }
+                case "set day onoff" ->{
                     if (enableddaytime) {
                         out.print("changed day & night scheme to: off");
                         enableddaytime = false;
@@ -247,9 +230,8 @@ public class thermostaat {
                     } else {
                         out.println("oops, something went wrong, nothing has changed");
                     }
-                    break;
-                case "set momenttemps":
-                case "set dbtemps":
+            }
+                case "set momenttemps","set dbtemps" ->{
                     out.println("To what temperature do you want to set the day time temperature? (only use ',' not a '.'");
                     out.print("SRCLA?/Thermostaat@192.168.1.99/SetDayNightTemp/SetDayTemp>");
                     try {
@@ -264,14 +246,12 @@ public class thermostaat {
                     } catch (InputMismatchException exception) {
                         out.println("only use an , instead of a .");
                     }
-                    break;
-                case "gettemp":
-                case "geti temp":
+            }
+                case "gettemp","geti temp" ->{
                     sethistory("Get Temperature");
                     out.println("Your current temperature is: " + nowtemp + "°C");
-                    break;
-                case "icall geti":
-                case "vardump":
+            }
+                case "icall geti","vardump" ->{
                     out.println("\n");
                     out.println("I(nternal)CALL GETInfo/VAR Dump: ");
 
@@ -292,15 +272,9 @@ public class thermostaat {
                         out.println("ARRAY.VAR$history[" + vdhis + "] = " + history[vdhis][0] + "," + history[vdhis][1] + "," + history[vdhis][2] + "," + history[vdhis][3] + "," + history[vdhis][4] + "," + history[vdhis][5] + "," + history[vdhis][6]);
                         vdhis++;
                     }
-                    break;
-                case "poweroff":
-                    poweroff();
-                    break;
-                case "exit":
-                case "end":
-                    proceed = false;
-                    break;
-                default:
+            }
+                case "poweroff" ->{ poweroff(); }
+                case "exit","end" ->{ proceed = false; }
             }
         }
     }

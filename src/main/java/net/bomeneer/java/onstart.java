@@ -18,9 +18,7 @@ public class onstart {
         switch (command) {
             //Inventory 1 Starter
             case "inventory-v1" -> products.main();
-
             case "inventory-v2" -> invertoryV2.main();
-
             case "inventory-v3" -> inventoryV3.startcheck();
             case "dobbelgame --T=6" -> dobbelgame.main(0);
             case "dobbelgame --T=100" -> dobbelgame.main(1);

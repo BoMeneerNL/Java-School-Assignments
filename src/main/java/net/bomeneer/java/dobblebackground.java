@@ -75,7 +75,6 @@ public class dobblebackground {
         flnow = 7;
         while (flnow <= 100) {
             out.println(space);
-
             if (flnow <= 100) {
                 out.println(dobble1 + flnow + dobble2);
             } else {
