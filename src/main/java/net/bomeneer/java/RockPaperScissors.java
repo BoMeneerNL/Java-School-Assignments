@@ -1,5 +1,6 @@
 package net.bomeneer.java;
 
+import java.lang.constant.Constable;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -33,11 +34,7 @@ public class RockPaperScissors {
         // RandomNames - End
         // PlayerAmount - Start
         while (playeramount <= 1 || playeramount >= 4) {
-            if (playeramountfilltime == 0) {
-                out.println("hoeveel spelers? (2 of 3)");
-            } else {
-                out.println("dit aantal spelers is niet mogelijk, je kan dit spelen met 2 of 3 spelers");
-            }
+            out.println(playeramountfilltime == 0 ? "hoeveel spelers? (2 of 3)" : "dit aantal spelers is niet mogelijk, je kan dit spelen met 2 of 3 spelers");
             playeramountfilltime++;
             out.print("aantal spelers: ");
             playeramount = input.nextInt();
@@ -217,14 +214,9 @@ public class RockPaperScissors {
                 }
             }
         }
-        if (playerwins[0] >= 3) { out.println("Player 1(" + playername[0] + ") wins"); }
-        else{ out.println("Player 1(" + playername[0] + ") lost"); }
-
-        if (playerwins[1] >= 3) { out.println("Player 2 (" + playername[1] + ") wins"); }
-        else { out.println("Player 2 (" + playername[1] + ") lost"); }
-
-        if (playerwins[2] >= 3) { out.println("Player 3 (" + playername[2] + ") wins"); }
-        else{ out.println("Player 3 (" + playername[2] + ") lost"); }
+        System.out.println("Player 1(" + playername[0] + ") " + (playerwins[0] >= 3?"wins":"lost"));
+        System.out.println("Player 2(" + playername[1] + ") " + (playerwins[1] >= 3?"wins":"lost"));
+        System.out.println("Player 3(" + playername[2] + ") " + (playerwins[2] >= 3?"wins":"lost"));
 
         if (debug.equals("ja") || debug.equals("Ja") || debug.equals("JA")) {
             out.println("VAR$playerwins[0]: " + playerwins[0]);

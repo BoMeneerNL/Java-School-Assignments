@@ -58,25 +58,23 @@ public class inventoryV3 {
         if (newitems > 0 && newitems <= 10) {
             do {
                 out.println("what is the price of the new product?, use price as '0.00' prices are in EUR(€)");
-                while (newproducts[newitems - 1][0] == "0.00" || newproducts[newitems - 1][0] == "") {
+                while (newproducts[newitems - 1][0].equals("0.00") || newproducts[newitems - 1][0].equals("")) {
                     newproducts[newitems - 1][0] = input.nextLine();
                 }
 
                 out.println("What is the product type of the new product?");
-                while (newproducts[newitems - 1][1] == "ProductType") {
-                    newproducts[newitems - 1][1] = input.nextLine();
-                }
+                while (newproducts[newitems - 1][1].equals("ProductType"))
+
+                newproducts[newitems - 1][1] = input.nextLine();
                 out.println("What is the (product) name of the new product?");
-                while (newproducts[newitems - 1][2] == "Product") {
-                    newproducts[newitems - 1][2] = input.nextLine();
-                }
+
+                while (newproducts[newitems - 1][2].equals("Product")) newproducts[newitems - 1][2] = input.nextLine();
                 out.println("How many items of the new product are stocked?");
-                while (newproducts[newitems - 1][3] == "Stocked") {
-                    newproducts[newitems - 1][3] = input.nextLine();
-                }
+
+                while (newproducts[newitems - 1][3] == "Stocked") newproducts[newitems - 1][3] = input.nextLine();
                 newitems--;
             } while (newitems != 0);
-            if (newproducts[0][1] != "ProductType" && newproducts[0][2] != "Product" && newproducts[0][3] != "Stocked") {
+            if (!newproducts[0][1].equals("ProductType") && !newproducts[0][2].equals("Product") && !newproducts[0][3].equals("Stocked")) {
                 out.println(divider_s);
                 out.println("Price: " + newproducts[0][0] + "€");
                 out.println("Product Type: " + newproducts[0][1]);
@@ -84,7 +82,7 @@ public class inventoryV3 {
                 out.println("Stocked: " + newproducts[0][3]);
                 out.println(divider_s);
             }
-            if (newproducts[1][1] != "ProductType" && newproducts[1][2] != "Product" && newproducts[1][3] != "Stocked") {
+            if (!newproducts[1][1].equals("ProductType") && !newproducts[1][2].equals("Product") && !newproducts[1][3].equals("Stocked")) {
                 out.println(divider_s);
                 out.println("Price: " + newproducts[1][0] + "€");
                 out.println("Product Type: " + newproducts[1][1]);
@@ -174,7 +172,6 @@ public class inventoryV3 {
     public static void startcheck() {
         out.println("how many items do you want to add?, if none use '0'");
         do {
-
             try {
                 newitems = input.nextInt();
                 main();

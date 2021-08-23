@@ -61,7 +61,7 @@ public class invertoryV2 {
 
     public static void main() {
         products minecraftj = new products(23.95f, "Games (prepaid cards)", "Minecraft: Java Edition (Prepaid card)", 20, "Windows, MacOS, Linux", 7);
-        products minecraftb = new products(23.95, "Games (prepaid cards)", "Minecraft: Java Edition (Prepaid card)", 20, "Windows, MacOS, Linux", 7);
+        products minecraftb = new products(23.95, "Games (prepaid cards)", "Minecraft: Bedrock Edition (Prepaid card)", 20, "Windows, MacOS, Linux", 7);
         products gtav = new products(50.55f, "Games (Physical Copy)", "GTA V", 10, "PlayStation 3, Xbox 360, PlayStation 4, Xbox One, Windows, PlayStation 5, Xbox Series X", 18);
         products balpen = new products(20.10f, "Pennen", "Balpen", 500);
         //Inputs, inputs temp data for Inventory
@@ -85,13 +85,11 @@ public class invertoryV2 {
         while (!checkifgame.equals("y") && !checkifgame.equals("Y") && !checkifgame.equals("yes") && !checkifgame.equals("Yes") && !checkifgame.equals("YES") && !checkifgame.equals("n") && !checkifgame.equals("N") && !checkifgame.equals("no") && !checkifgame.equals("No") && !checkifgame.equals("NO")) {
             if (remembertimesgames == 0) {
                 out.println("Is this product a game?, yes or no");
-                checkifgame = input.nextLine();
-                remembertimesgames = remembertimesgames + 1;
             } else {
                 out.println("The only responses possible are: Yes or No");
-                checkifgame = input.nextLine();
-                remembertimesgames = remembertimesgames + 1;
             }
+            checkifgame = input.nextLine();
+            remembertimesgames = remembertimesgames + 1;
         }
         if (!checkifgame.equals("y") || !checkifgame.equals("Y") || !checkifgame.equals("yes") || !checkifgame.equals("Yes") || !checkifgame.equals("YES")) {
             while (tempplatforms.equals("NULL")) {

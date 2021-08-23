@@ -7,38 +7,25 @@ import static java.lang.System.out;
 
 public class dobbelgame {
     static Scanner input = new Scanner(in);
-    static String reply;
 
     public static void main(int tcount) {
-        if (tcount == 0) {
-            dobblebackground.dobblie(0);
-            out.println("Wil je nog een keer dobbelen?, Ja of Nee?");
-            reply = input.nextLine();
-            if (reply.equals("ja") || reply.equals("Ja") || reply.equals("JA") || reply.equals("j") || reply.equals("J") || reply.equals("yes") || reply.equals("Yes") || reply.equals("YES") || reply.equals("y") || reply.equals("Y")) {
-                out.println("Met dezelfde dobbelsteen?, Ja of Nee?");
-                reply = input.nextLine();
-                if (reply.equals("ja") || reply.equals("Ja") || reply.equals("JA") || reply.equals("j") || reply.equals("J") || reply.equals("yes") || reply.equals("Yes") || reply.equals("YES") || reply.equals("y") || reply.equals("Y")) {
-                    redo(0);
-                } else {
-                    redo(1);
-                }
-            }
-        } else if (tcount == 1) {
-            dobblebackground.dobblie(1);
-            out.println("Wil je nog een keer dobbelen?, Ja of Nee?");
-            reply = input.nextLine();
-            if (reply.equals("ja") || reply.equals("Ja") || reply.equals("JA") || reply.equals("j") || reply.equals("J") || reply.equals("yes") || reply.equals("Yes") || reply.equals("YES") || reply.equals("y") || reply.equals("Y")) {
-                out.println("Met dezelfde dobbelsteen?, Ja of Nee?");
-                reply = input.nextLine();
-                if (reply.equals("ja") || reply.equals("Ja") || reply.equals("JA") || reply.equals("j") || reply.equals("J") || reply.equals("yes") || reply.equals("Yes") || reply.equals("YES") || reply.equals("y") || reply.equals("Y")) {
-                    redo(1);
-                } else {
-                    redo(0);
-                }
-
+        dobblebackground.dobblie(tcount);
+        out.println("Wil je nog een keer dobbelen?, Ja of Nee?");
+        String reply1 = input.nextLine();
+        reply1 = reply1.toLowerCase();
+        if (reply1.equals("ja") || reply1.equals("j") || reply1.equals("yes") || reply1.equals("y")) {
+            out.println("Met dezelfde dobbelsteen?, Ja of Nee?");
+            String reply2 = input.nextLine();
+            reply2 = reply2.toLowerCase();
+            if (reply2.equals("ja") || reply2.equals("j") || reply2.equals("yes") || reply2.equals("y")) {
+                redo(tcount);
+            } else {
+                if (tcount == 1) redo(0);
+                else redo(1);
             }
         }
     }
+
     public static void redo(int tcount2) {
         main(tcount2);
     }
