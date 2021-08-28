@@ -12,14 +12,11 @@ public class RockPaperScissors {
     private static final Scanner input = new Scanner(in);
 
     public static void main() {
-        // 0 = Steen, 1 = Papier,2 = Schaar
-        // debug sequence 1 - Start
         String debug;
         out.println("Start?,type something and click [ENTER]");
         debug = input.nextLine();
         input.nextLine();
-        // debug sequence 1 - End
-        // Vartable - Start
+
         String oops_fuckup = "Ah yes the program fucked up bigtimes, oops";
         boolean[] playerrandom = {false,false,false};
         int getrandomcount;
@@ -28,11 +25,9 @@ public class RockPaperScissors {
         int[] playerwins = {0,0,0};
         int[] playerhand = {-1,-1,-1};
         int playeramountfilltime = 0;
-        // Vartable - End
-        // RandomNames - Start
+
         String[] randomname = {"STROS", "Windows", "MacOSX", "Ubuntu", "CentOS", "RHEL", "Arch Linux", "TempleOS", "Linux Mint", "vSphere", "ProxMox"};
-        // RandomNames - End
-        // PlayerAmount - Start
+
         while (playeramount <= 1 || playeramount >= 4) {
             out.println(playeramountfilltime == 0 ? "hoeveel spelers? (2 of 3)" : "dit aantal spelers is niet mogelijk, je kan dit spelen met 2 of 3 spelers");
             playeramountfilltime++;
@@ -40,8 +35,7 @@ public class RockPaperScissors {
             playeramount = input.nextInt();
             input.nextLine();
         }
-        // PlayerAmount - End
-        // ChooseNames - Start
+
         out.println("Vul hier de naam voor speler 1 (voor een random naam type 'Random'");
         playername[0] = input.nextLine();
         if (playername[0].equals("random") || playername[0].equals("Random") || playername[0].equals("RANDOM")) {
@@ -64,8 +58,7 @@ public class RockPaperScissors {
                 playername[2] = randomname[getrandomcount];
             }
         }
-        // ChooseNames - End
-        // FixConflictedNames - Start
+
         if (playername[0].equals(playername[1]) || playername[0].equals(playername[2])) {
             if (playerrandom[0]) {
                 if (playerrandom[1] || playerrandom[2]) {
@@ -80,8 +73,7 @@ public class RockPaperScissors {
                 }
             }
         }
-        // FixConflictedNames - End
-        // AutoSelector - Start
+
         if (playeramount == 2) {
             while (playerwins[0] < 3 && playerwins[1] < 3) {
                 playerhand[0] = randomnumber(2);

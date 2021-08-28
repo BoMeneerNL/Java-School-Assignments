@@ -22,7 +22,6 @@ public class dobblebackground {
     public static void dobblie(int typethrow) {
         if (typethrow == 0) uitkomst = random.nextInt(6);
         else if (typethrow == 1) uitkomst = random.nextInt(100);
-
         else {
             out.println("Oops, an unfixable error has occured");
             System.exit(1);
@@ -58,11 +57,8 @@ public class dobblebackground {
                 case 5 -> out.println(t5);
                 case 6 -> out.println(t6);
             }
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            try { Thread.sleep(200); }
+            catch (InterruptedException ignored) {}
             flnow++;
         }
         flnow = 0;
@@ -72,14 +68,10 @@ public class dobblebackground {
         flnow = 7;
         while (flnow <= 100) {
             out.println(space);
-            if (flnow <= 100) out.println(dobble1 + flnow + dobble2);
-            else out.println("Oops, Out of range :(,OEF");
+            out.println(flnow <= 100 ? dobble1 + flnow + dobble2: "Oops, Out of range :(,OEF");
             flnow++;
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            try { Thread.sleep(200); }
+            catch (InterruptedException ignored){}
         }
     }
 }

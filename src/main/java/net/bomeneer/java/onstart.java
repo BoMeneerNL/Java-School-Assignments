@@ -6,9 +6,7 @@ import static java.lang.System.in;
 import static java.lang.System.out;
 
 public class onstart {
-
     public static void main(String[] args) {
-        String ltxt = "Loading...";
         out.println("What program do you want to start?:");
         Scanner input = new Scanner(in);
         String command = input.nextLine();

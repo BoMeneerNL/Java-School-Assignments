@@ -39,7 +39,6 @@ public class products {
         gameplatform = true;
     }
 
-    //JAR Test not Linked to Execution of *.java
     public static void main() {
         //Start of main file
         products minecraftj = new products(23.95f, "Games (prepaid cards)", "Minecraft: Java Edition (Prepaid card)", 20, "Windows, MacOS, Linux", 7);
@@ -59,10 +58,7 @@ public class products {
         out.println("Type Product            :" + " " + this.producttype);
         out.println("Prijs/Price             : " + this.price + " € (EUR)");
         out.println("Amount/Aantal voorraad  : " + this.stocked);
-        if (gameplatform) {
-            out.println("Platformen              : " + this.platforms);
-            out.println("PEGI Rating             : " + this.pegirating + "+");
-        }
+        out.println(gameplatform ?"Platformen              : " + this.platforms + "\r\nPEGI Rating             : " + this.pegirating + "+" : "");
         out.println(divider);
     }
 }

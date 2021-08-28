@@ -71,7 +71,7 @@ public class inventoryV3 {
                 while (newproducts[newitems - 1][2].equals("Product")) newproducts[newitems - 1][2] = input.nextLine();
                 out.println("How many items of the new product are stocked?");
 
-                while (newproducts[newitems - 1][3] == "Stocked") newproducts[newitems - 1][3] = input.nextLine();
+                while (newproducts[newitems - 1][3].equals("Stocked")) newproducts[newitems - 1][3] = input.nextLine();
                 newitems--;
             } while (newitems != 0);
             if (!newproducts[0][1].equals("ProductType") && !newproducts[0][2].equals("Product") && !newproducts[0][3].equals("Stocked")) {
