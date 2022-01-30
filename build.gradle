@@ -4,11 +4,7 @@ plugins {
 
 group 'net.bomeneer'
 version '1.0.0'
-jar {
-    manifest {
-        attributes 'Main-Class': 'net.bomeneer.java.onstart'
-    }
-}
+jar { manifest { attributes 'Main-Class': 'net.bomeneer.java.onstart' } }
 repositories {
     mavenCentral()
 }

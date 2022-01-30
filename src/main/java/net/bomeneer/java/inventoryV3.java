@@ -19,9 +19,9 @@ public class inventoryV3 {
     public static int newitems;
     public static boolean jeff = true;
     static Scanner input = new Scanner(in);
-    static products minecraftj = new products(23.95, "Games (prepaid cards)", "Minecraft: Java Edition (Prepaid card)", 20, "Windows, MacOS, Linux", 7);
-    static products minecraftb = new products(23.95, "Games (prepaid cards)", "Minecraft: Bedrock Edition (Prepaid card)", 20, "Windows, MacOS, Linux", 7);
-    static products gtav = new products(50.55, "Games (Physical Copy)", "GTA V", 10, "PlayStation 3, Xbox 360, PlayStation 4, Xbox One, Windows, PlayStation 5, Xbox Series X", 18);
+    static products minecraftj = new products(23.95f, "Games (prepaid cards)", "Minecraft: Java Edition (Prepaid card)", 20, "Windows, MacOS, Linux", 7);
+    static products minecraftb = new products(23.95f, "Games (prepaid cards)", "Minecraft: Bedrock Edition (Prepaid card)", 20, "Windows, MacOS, Linux", 7);
+    static products gtav = new products(50.55f, "Games (Physical Copy)", "GTA V", 10, "PlayStation 3, Xbox 360, PlayStation 4, Xbox One, Windows, PlayStation 5, Xbox Series X", 18);
     static products balpen = new products(20.10, "Pennen", "Balpen", 500);
     static String[][] newproducts = {
             /*NewProduct 1*/{"0.00", "ProductType", "Product", "Stocked"},
@@ -171,21 +171,18 @@ public class inventoryV3 {
 
     public static void startcheck() {
         out.println("how many items do you want to add?, if none use '0'");
-        do {
-            try {
-                newitems = input.nextInt();
-                main();
-                jeff = false;
-            } catch (InputMismatchException e) {
-                out.println("oops, only integers are allowed (error_ Java:InputMismatchException)");
-                newitems = input.nextInt();
-                jeff = true;
-            } finally {
-                main();
-                jeff = false;
-            }
-            //the if newitems <= 0 is handled @ main(){}
-        } while (jeff);
+        try {
+            newitems = input.nextInt();
+            main();
+            jeff = false;
+        } catch (InputMismatchException e) {
+            out.println("oops, only integers are allowed (error_ Java:InputMismatchException)");
+            newitems = input.nextInt();
+        } finally {
+            main();
+            jeff = false;
+        }
+        //the if newitems <= 0 is handled @ main(){}
     }
 
 }

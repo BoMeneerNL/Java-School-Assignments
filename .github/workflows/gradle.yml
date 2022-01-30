@@ -14,14 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        distribution: [ 'zulu', 'adopt' ]
+        distribution: [ 'zulu', 'temurin' ]
     steps:
     - uses: actions/checkout@v2
-    - name: Set up ${{ matrix.Java }} (${{ matrix.distribution }})
+    - name: Set up Java 17 (${{ matrix.distribution }})
       uses: actions/setup-java@v2
       with:
         distribution: ${{ matrix.distribution }}
-        java-version: '16'
+        java-version: '17'
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle

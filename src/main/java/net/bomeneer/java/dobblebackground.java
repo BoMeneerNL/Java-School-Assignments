@@ -2,7 +2,6 @@ package net.bomeneer.java;
 
 import java.util.Random;
 
-import static java.lang.System.out;
 
 public class dobblebackground {
     static int flnow = 0;
@@ -19,11 +18,11 @@ public class dobblebackground {
     static Random random = new Random();
     static int uitkomst;
 
-    public static void dobblie(int typethrow) {
+    public static void dobblie(int typethrow) throws InterruptedException {
         if (typethrow == 0) uitkomst = random.nextInt(6);
         else if (typethrow == 1) uitkomst = random.nextInt(100);
         else {
-            out.println("Oops, an unfixable error has occured");
+            System.out.println("Oops, an unfixable error has occured");
             System.exit(1);
         }
 
@@ -33,45 +32,40 @@ public class dobblebackground {
             forlooper2();
         }
         forlooper();
-        out.println(space);
+        System.out.println(space);
         switch (uitkomst) {
-            case 1 -> out.println(t1);
-            case 2 -> out.println(t2);
-            case 3 -> out.println(t3);
-            case 4 -> out.println(t4);
-            case 5 -> out.println(t5);
-            case 6 -> out.println(t6);
+            case 1 -> System.out.println(t1);
+            case 2 -> System.out.println(t2);
+            case 3 -> System.out.println(t3);
+            case 4 -> System.out.println(t4);
+            case 5 -> System.out.println(t5);
+            case 6 -> System.out.println(t6);
         }
-        if (uitkomst >= 7 && uitkomst <= 100) out.println(dobble1 + uitkomst + dobble2);
-        out.println("You've thrown" + " " + uitkomst);
+        if (uitkomst >= 7 && uitkomst <= 100) System.out.println(dobble1 + uitkomst + dobble2);
+        System.out.println("You've thrown" + " " + uitkomst);
     }
 
     public static void forlooper() {
-        while (flnow <= 6) {
-            out.println(space);
-            switch (flnow) {
-                case 1 -> out.println(t1);
-                case 2 -> out.println(t2);
-                case 3 -> out.println(t3);
-                case 4 -> out.println(t4);
-                case 5 -> out.println(t5);
-                case 6 -> out.println(t6);
+        for(int i=1;i <= 6;i++){
+            System.out.println(space);
+            switch (i) {
+                case 1 -> System.out.println(t1);
+                case 2 -> System.out.println(t2);
+                case 3 -> System.out.println(t3);
+                case 4 -> System.out.println(t4);
+                case 5 -> System.out.println(t5);
+                case 6 -> System.out.println(t6);
             }
             try { Thread.sleep(200); }
             catch (InterruptedException ignored) {}
-            flnow++;
         }
-        flnow = 0;
     }
 
-    public static void forlooper2() {
-        flnow = 7;
-        while (flnow <= 100) {
-            out.println(space);
-            out.println(flnow <= 100 ? dobble1 + flnow + dobble2: "Oops, Out of range :(,OEF");
-            flnow++;
-            try { Thread.sleep(200); }
-            catch (InterruptedException ignored){}
+    public static void forlooper2(){
+        for(int i = 7;i <= 100;i++){
+            System.out.println(space + (flnow <= 100 ? dobble1 + flnow + dobble2 : "Oops, Out of range :(,OEF"));
         }
+        try { Thread.sleep(200); }
+        catch (InterruptedException ignored){}
     }
 }

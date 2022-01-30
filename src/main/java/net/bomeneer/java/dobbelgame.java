@@ -9,10 +9,10 @@ public class dobbelgame {
     static Scanner input = new Scanner(in);
 
     public static void main(int tcount) {
-        dobblebackground.dobblie(tcount);
+        try { dobblebackground.dobblie(tcount); }
+        catch(Exception ignored){}
         out.println("Wil je nog een keer dobbelen?, Ja of Nee?");
-        String reply1 = input.nextLine();
-        reply1 = reply1.toLowerCase();
+        String reply1 = input.nextLine().toLowerCase();
         if (reply1.equals("ja") || reply1.equals("j") || reply1.equals("yes") || reply1.equals("y")) {
             out.println("Met dezelfde dobbelsteen?, Ja of Nee?");
             String reply2 = input.nextLine();
