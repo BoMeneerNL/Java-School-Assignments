@@ -3,33 +3,33 @@ package net.bomeneer.java;
 import static java.lang.System.out;
 
 public class products {
-    public double price;
-    public String product;
-    public int stocked;
-    public String producttype;
-    public boolean gameplatform;
-    public String platforms;
-    public int pegirating;
+    public double Price;
+    public String Product;
+    public int Stocked;
+    public String Producttype;
+    public boolean Gameplatform;
+    public String Platforms;
+    public int Pegirating;
 
     public String divider = "[------------------------------]\r\n";
 
 
     public products(double price, String producttype, String product, int stocked) {
-        this.price = price;
-        this.product = product;
-        this.producttype = producttype;
-        this.stocked = stocked;
-        gameplatform = false;
+        Price = price;
+        Product = product;
+        Producttype = producttype;
+        Stocked = stocked;
+        Gameplatform = false;
     }
 
     public products(float price, String producttype, String product, int stocked, String plaforms, int pegirating) {
-        this.price = price;
-        this.product = product;
-        this.producttype = producttype;
-        this.stocked = stocked;
-        this.platforms = plaforms;
-        this.pegirating = pegirating;
-        gameplatform = true;
+        Price = price;
+        Product = product;
+        Producttype = producttype;
+        Stocked = stocked;
+        Platforms = plaforms;
+        Pegirating = pegirating;
+        Gameplatform = true;
     }
 
     public static void main() {
@@ -47,11 +47,11 @@ public class products {
 
     public void Outputter() {
         out.println(divider);
-        out.println("Product                 :" + " " + this.product);
-        out.println("Type Product            :" + " " + this.producttype);
-        out.println("Prijs/Price             : " + this.price + " € (EUR)");
-        out.println("Amount/Aantal voorraad  : " + this.stocked);
-        out.println(gameplatform ? "Platformen              : " + this.platforms + "\r\nPEGI Rating             : " + this.pegirating + "+" : "");
+        out.println("Product                 :" + " " + Product);
+        out.println("Type Product            :" + " " + Producttype);
+        out.println("Prijs/Price             : " + Price + " € (EUR)");
+        out.println("Amount/Aantal voorraad  : " + Stocked);
+        out.println(Gameplatform ? "Platformen              : " + Platforms + "\r\nPEGI Rating             : " + Pegirating + "+" : "");
         out.println(divider);
     }
 }

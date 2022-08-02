@@ -80,7 +80,7 @@ public class thermostaat {
     static void gethistory(int historycounter){
         historycounter = 10 - historycounter;
         if(historycounter < 0 || historycounter > 10){
-            throw new IllegalStateException("Unexpected value: " + historycounter + "ERROR.TOHIGH.HISTORY_ARRAY");
+            throw new IllegalStateException("Unexpected value: " + historycounter + " ERROR.TOHIGH.HISTORY_ARRAY");
         }
         while(historycounter <= 9){
             System.out.println("an action (" + history[historycounter][0] + ") has been made on: " + history[historycounter][1] + "-" + history[historycounter][2] + "-" + history[historycounter][3] + " " + history[historycounter][4] + ":" + history[historycounter][5] + ":" + history[historycounter][6]);
@@ -111,7 +111,7 @@ public class thermostaat {
             }
 
         }
-        System.out.println("done, new temprature is: " + nowtemp);
+        System.out.println("finished task, new temprature is: " + nowtemp);
     }
     static void main(){
         System.out.println("""
@@ -248,14 +248,13 @@ public class thermostaat {
         }
     static void poweroff(){
         sethistory("Powered off System");
-        int jeff = 0;
-        while (jeff == 0){
+        while (true){
             System.out.print("SRCLA?/SSH@NotConnected>");
             command = input.nextLine();
             switch (command) {
                 case "poweron" -> {
-                    jeff = 1;
                     sethistory("Powered on System");
+                    return;
                 }
                 case "poweroff", "icall getti" -> System.out.println("Could not execute command, err_noncon");
                 case "exit" -> System.exit(0);

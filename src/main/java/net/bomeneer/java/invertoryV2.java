@@ -7,56 +7,56 @@ import static java.lang.System.out;
 public class invertoryV2 {
 
     //Declaring and adding placeholders (to) InvV2 Variables
-    public static Scanner input = new Scanner(System.in);
-    public static double tempprice = -1;
-    public static String tempproduct = "NULL";
-    public static int tempstocked = -1;
-    public static String tempproducttype = "NULL";
-    public static String checkifgame = "NULL";
-    public static int remembertimesgames = 0;
+    public static Scanner Input = new Scanner(System.in);
+    public static double Tempprice = -1;
+    public static String Tempproduct = "NULL";
+    public static int Tempstocked = -1;
+    public static String Tempproducttype = "NULL";
+    public static String Checkifgame = "NULL";
+    public static int Remembertimesgames = 0;
     public static boolean tempgameplatform = false;
-    public static String tempplatforms = "NULL";
-    public static int temppegirating = -1;
-    public static int tppp;
+    public static String Tempplatforms = "NULL";
+    public static int Temppegirating = -1;
+    public static int Tppp;
 
 
     //Declaring InvV1 Variables
     //Divider for Static items (because of Static<>><Non-Static Errors)
-    public static String divider_s = "[------------------------------]\r\n";
-    public double price;
-    public String product;
-    public int stocked;
-    public String producttype;
-    public boolean gameplatform;
-    public String platforms;
-    public int pegirating;
+    public static String Divider_s = "[------------------------------]\r\n";
+    public double Price;
+    public String Product;
+    public int Stocked;
+    public String Producttype;
+    public boolean Gameplatform;
+    public String Platforms;
+    public int Pegirating;
     //Divider for Non-Static items (because of Static<>><Non-Static Errors)
-    public String divider_ns = "[------------------------------]\r\n";
+    public String Divider_ns = "[------------------------------]\r\n";
 
     public invertoryV2() {
-        this.price = 0.00f;
-        this.product = "PROD-PLACEHOLDER";
-        this.producttype = "PRODTYPE-PLACEHOLDER";
-        this.stocked = 0;
-        gameplatform = false;
+        Price = 0.00f;
+        Product = "PROD-PLACEHOLDER";
+        Producttype = "PRODTYPE-PLACEHOLDER";
+        Stocked = 0;
+        Gameplatform = false;
     }
 
     public invertoryV2(double price, String producttype, String product, int stocked) {
-        this.price = price;
-        this.product = product;
-        this.producttype = producttype;
-        this.stocked = stocked;
-        gameplatform = false;
+        Price = price;
+        Product = product;
+        Producttype = producttype;
+        Stocked = stocked;
+        Gameplatform = false;
     }
 
     public invertoryV2(double price, String producttype, String product, int stocked, String plaforms, int pegirating) {
-        this.price = price;
-        this.product = product;
-        this.producttype = producttype;
-        this.stocked = stocked;
-        this.platforms = plaforms;
-        this.pegirating = pegirating;
-        gameplatform = true;
+        Price = price;
+        Product = product;
+        Producttype = producttype;
+        Stocked = stocked;
+        Platforms = plaforms;
+        Pegirating = pegirating;
+        Gameplatform = true;
     }
 
     public static void main() {
@@ -66,40 +66,38 @@ public class invertoryV2 {
         products balpen = new products(20.10f, "Pennen", "Balpen", 500);
         //Inputs, inputs temp data for Inventory
         //While loops to prevent a overlap of inputs
-        while (tempprice == -1) {
+        while (Tempprice == -1) {
             out.println("What is the price? use as : 0,00");
-            tempprice = input.nextDouble();
+            Tempprice = Input.nextDouble();
         }
-        while (!tempproduct.equals("NULL")) {
+        while (!Tempproduct.equals("NULL")) {
             out.println("What is the name of the product?");
-            tempproduct = input.nextLine();
+            Tempproduct = Input.nextLine();
         }
-        while (tempstocked == -1) {
+        while (Tempstocked == -1) {
             out.println("How many of the product is stocked");
-            tempstocked = input.nextInt();
+            Tempstocked = Input.nextInt();
         }
-        while (!tempproducttype.equals("NULL")) {
+        while (!Tempproducttype.equals("NULL")) {
             out.println("What type of product is this product");
-            tempproducttype = input.nextLine();
+            Tempproducttype = Input.nextLine();
         }
-        while (!checkifgame.equals("y") && !checkifgame.equals("Y") && !checkifgame.equals("yes") && !checkifgame.equals("Yes") && !checkifgame.equals("YES") && !checkifgame.equals("n") && !checkifgame.equals("N") && !checkifgame.equals("no") && !checkifgame.equals("No") && !checkifgame.equals("NO")) {
-            if (remembertimesgames == 0) {
+        while (!Checkifgame.equals("y") && !Checkifgame.equals("yes") && !Checkifgame.equals("n") && !Checkifgame.equals("no")) {
+            if (Remembertimesgames == 0) {
                 out.println("Is this product a game?, yes or no");
             } else {
                 out.println("The only responses possible are: Yes or No");
             }
-            checkifgame = input.nextLine();
-            remembertimesgames = remembertimesgames + 1;
+            Checkifgame = Input.nextLine().toLowerCase();
+            Remembertimesgames++;
         }
-        if (!checkifgame.equals("y") || !checkifgame.equals("Y") || !checkifgame.equals("yes") || !checkifgame.equals("Yes") || !checkifgame.equals("YES")) {
-            while (tempplatforms.equals("NULL")) {
-                out.println("On what platforms is this game buyable?");
-                tempplatforms = input.nextLine();
-            }
-            while (temppegirating == -1) {
-                out.println("What is the PEGI (Pan European Game Information) Rating?");
-                temppegirating = input.nextInt();
-            }
+        while (Tempplatforms.equals("NULL")) {
+            out.println("On what platforms is this game buyable?");
+            Tempplatforms = Input.nextLine();
+        }
+        while (Temppegirating == -1) {
+            out.println("What is the PEGI (Pan European Game Information) Rating?");
+            Temppegirating = Input.nextInt();
         }
 
         //Product outputs
@@ -113,43 +111,43 @@ public class invertoryV2 {
     //outputs temp input of user
     public static void tempoutputter() {
 
-        tppp = (int) (tempprice * tempstocked);
-        out.println(divider_s);
+        Tppp = (int) (Tempprice * Tempstocked);
+        out.println(Divider_s);
         out.print("Product     : ");
-        out.println(tempproduct);
+        out.println(Tempproduct);
         out.print("Price       : ");
-        out.print(tempprice);
+        out.print(Tempprice);
         out.println("€ (EUR)");
         out.print("Stocked     : ");
-        out.println(tempstocked);
+        out.println(Tempstocked);
         out.print("Type Product       : ");
-        out.println(tempproducttype);
-        if (!tempplatforms.equals("NULL") && temppegirating != -1) {
+        out.println(Tempproducttype);
+        if (!Tempplatforms.equals("NULL") && Temppegirating != -1) {
             out.print("Platforms          :");
-            out.println(tempplatforms);
+            out.println(Tempplatforms);
             out.print("PEGI Rating        : ");
-            out.print(temppegirating);
+            out.print(Temppegirating);
             out.println("+");
         }
         out.print("Total price (TPPP) : ");
-        out.print(tppp);
+        out.print(Tppp);
         out.println("€");
-        out.println(divider_s);
+        out.println(Divider_s);
     }
 
     public void Outputter() {
-        out.println(divider_ns);
-        out.println("Product                 :" + " " + this.product);
-        out.println("Type Product            :" + " " + this.producttype);
-        out.println("Prijs/Price             : " + this.price + " € (EUR)");
-        out.println("Amount/Aantal voorraad  : " + this.stocked);
+        out.println(Divider_ns);
+        out.println("Product                 :" + " " + Product);
+        out.println("Type Product            :" + " " + Producttype);
+        out.println("Prijs/Price             : " + Price + " € (EUR)");
+        out.println("Amount/Aantal voorraad  : " + Stocked);
 
         //If TRUE: Adds game data
-        if (gameplatform) {
-            out.println("Platformen              : " + this.platforms);
-            out.println("PEGI Rating             : " + this.pegirating + "+");
+        if (Gameplatform) {
+            out.println("Platformen              : " + Platforms);
+            out.println("PEGI Rating             : " + Pegirating + "+");
         }
-        out.println(divider_ns);
+        out.println(Divider_ns);
     }
 
 }
