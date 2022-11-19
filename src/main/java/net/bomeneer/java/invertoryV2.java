@@ -14,7 +14,6 @@ public class invertoryV2 {
     public static String Tempproducttype = "NULL";
     public static String Checkifgame = "NULL";
     public static int Remembertimesgames = 0;
-    public static boolean tempgameplatform = false;
     public static String Tempplatforms = "NULL";
     public static int Temppegirating = -1;
     public static int Tppp;
@@ -32,22 +31,6 @@ public class invertoryV2 {
     public int Pegirating;
     //Divider for Non-Static items (because of Static<>><Non-Static Errors)
     public String Divider_ns = "[------------------------------]\r\n";
-
-    public invertoryV2() {
-        Price = 0.00f;
-        Product = "PROD-PLACEHOLDER";
-        Producttype = "PRODTYPE-PLACEHOLDER";
-        Stocked = 0;
-        Gameplatform = false;
-    }
-
-    public invertoryV2(double price, String producttype, String product, int stocked) {
-        Price = price;
-        Product = product;
-        Producttype = producttype;
-        Stocked = stocked;
-        Gameplatform = false;
-    }
 
     public invertoryV2(double price, String producttype, String product, int stocked, String plaforms, int pegirating) {
         Price = price;

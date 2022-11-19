@@ -36,14 +36,6 @@ public class inventoryV3 {
             /*NewProduct 10*/{"0.00", "ProductType", "Product", "Stocked"}
     };
 
-    public inventoryV3(float price, String producttype, String product, int stocked) {
-        inventoryV3.Price = price;
-        inventoryV3.Product = product;
-        inventoryV3.Producttype = producttype;
-        inventoryV3.Stocked = stocked;
-        Gameplatform = false;
-    }
-
     public inventoryV3(float price, String producttype, String product, int stocked, String plaforms, int pegirating) {
         inventoryV3.Price = price;
         inventoryV3.Product = product;
@@ -73,85 +65,15 @@ public class inventoryV3 {
                 while (newproducts[Newitems - 1][3].equals("Stocked")) newproducts[Newitems - 1][3] = Input.nextLine();
                 Newitems--;
             } while (Newitems != 0);
-            if (!newproducts[0][1].equals("ProductType") && !newproducts[0][2].equals("Product") && !newproducts[0][3].equals("Stocked")) {
-                out.println(Divider_s);
-                out.println("Price: " + newproducts[0][0] + "€");
-                out.println("Product Type: " + newproducts[0][1]);
-                out.println("Product: " + newproducts[0][2]);
-                out.println("Stocked: " + newproducts[0][3]);
-                out.println(Divider_s);
-            }
-            if (!newproducts[1][1].equals("ProductType") && !newproducts[1][2].equals("Product") && !newproducts[1][3].equals("Stocked")) {
-                out.println(Divider_s);
-                out.println("Price: " + newproducts[1][0] + "€");
-                out.println("Product Type: " + newproducts[1][1]);
-                out.println("Product: " + newproducts[1][2]);
-                out.println("Stocked: " + newproducts[1][3]);
-                out.println(Divider_s);
-            }
-            if (newproducts[2][1] != "ProductType" && newproducts[2][2] != "Product" && newproducts[2][3] != "Stocked") {
-                out.println(Divider_s);
-                out.println("Price: " + newproducts[2][0] + "€");
-                out.println("Product Type: " + newproducts[2][1]);
-                out.println("Product: " + newproducts[2][2]);
-                out.println("Stocked: " + newproducts[2][3]);
-                out.println(Divider_s);
-            }
-            if (newproducts[3][1] != "ProductType" && newproducts[3][2] != "Product" && newproducts[3][3] != "Stocked") {
-                out.println(Divider_s);
-                out.println("Price: " + newproducts[3][0] + "€");
-                out.println("Product Type: " + newproducts[3][1]);
-                out.println("Product: " + newproducts[3][2]);
-                out.println("Stocked: " + newproducts[3][3]);
-                out.println(Divider_s);
-            }
-            if (newproducts[4][1] != "ProductType" && newproducts[4][2] != "Product" && newproducts[4][3] != "Stocked") {
-                out.println(Divider_s);
-                out.println("Price: " + newproducts[4][0] + "€");
-                out.println("Product Type: " + newproducts[4][1]);
-                out.println("Product: " + newproducts[4][2]);
-                out.println("Stocked: " + newproducts[4][3]);
-                out.println(Divider_s);
-            }
-            if (newproducts[5][1] != "ProductType" && newproducts[5][2] != "Product" && newproducts[5][3] != "Stocked") {
-                out.println(Divider_s);
-                out.println("Price: " + newproducts[5][0] + "€");
-                out.println("Product Type: " + newproducts[5][1]);
-                out.println("Product: " + newproducts[5][2]);
-                out.println("Stocked: " + newproducts[5][3]);
-                out.println(Divider_s);
-            }
-            if (newproducts[6][1] != "ProductType" && newproducts[6][2] != "Product" && newproducts[6][3] != "Stocked") {
-                out.println(Divider_s);
-                out.println("Price: " + newproducts[6][0] + "€");
-                out.println("Product Type: " + newproducts[6][1]);
-                out.println("Product: " + newproducts[6][2]);
-                out.println("Stocked: " + newproducts[6][3]);
-                out.println(Divider_s);
-            }
-            if (newproducts[7][1] != "ProductType" && newproducts[7][2] != "Product" && newproducts[7][3] != "Stocked") {
-                out.println(Divider_s);
-                out.println("Price: " + newproducts[7][0] + "€");
-                out.println("Product Type: " + newproducts[7][1]);
-                out.println("Product: " + newproducts[7][2]);
-                out.println("Stocked: " + newproducts[7][3]);
-                out.println(Divider_s);
-            }
-            if (newproducts[8][1] != "ProductType" && newproducts[8][2] != "Product" && newproducts[8][3] != "Stocked") {
-                out.println(Divider_s);
-                out.println("Price: " + newproducts[8][0] + "€");
-                out.println("Product Type: " + newproducts[8][1]);
-                out.println("Product: " + newproducts[8][2]);
-                out.println("Stocked: " + newproducts[8][3]);
-                out.println(Divider_s);
-            }
-            if (newproducts[9][1] != "ProductType" && newproducts[9][2] != "Product" && newproducts[9][3] != "Stocked") {
-                out.println(Divider_s);
-                out.println("Price: " + newproducts[9][0] + "€");
-                out.println("Product Type: " + newproducts[9][1]);
-                out.println("Product: " + newproducts[9][2]);
-                out.println("Stocked: " + newproducts[9][3]);
-                out.println(Divider_s);
+            for(int i = 0; i < 10; i++) {
+                if (!newproducts[i][1].equals("ProductType") && !newproducts[i][2].equals("Product") && !newproducts[i][3].equals("Stocked")) {
+                    out.println(Divider_s);
+                    out.println("Price: " + newproducts[i][0] + "€");
+                    out.println("Product Type: " + newproducts[i][1]);
+                    out.println("Product: " + newproducts[i][2]);
+                    out.println("Stocked: " + newproducts[i][3]);
+                    out.println(Divider_s);
+                }
             }
             Minecraftb.Outputter();
             Minecraftj.Outputter();

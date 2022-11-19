@@ -47,11 +47,12 @@ public class RockPaperScissors {
             if (playerrandom[0] &&(playerrandom[1] || playerrandom[2]))
                 playername[0] = randomname[randomnumber(10)];
 
-        while (playername[1].equals(playername[2]))
+        while (true) {
+            assert playername[1] != null;
+            if (!playername[1].equals(playername[2])) break;
             if (playerrandom[1] && playerrandom[2])
                     playername[1] = randomname[randomnumber(10)];
-
-
+        }
         if (playeramount == 2) {
             while (playerwins[0] < 3 && playerwins[1] < 3) {
                 playerhand[0] = randomnumber(2);

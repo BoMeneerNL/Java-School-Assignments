@@ -46,7 +46,7 @@ public class dobblebackground {
 
     public static void forlooper2(){
         for(int i = 7;i <= 100;i++){
-            System.out.println(space + (flnow <= 100 ? dobble1 + flnow + dobble2 : "Oops, Out of range :(,OEF"));
+            System.out.println(space + (flnow <= 100 ? dobble1 + flnow + dobble2 : "Oops, Out of range :("));
         }
         try { Thread.sleep(200); }
         catch (InterruptedException ignored){}

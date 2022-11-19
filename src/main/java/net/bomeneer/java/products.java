@@ -10,7 +10,6 @@ public class products {
     public boolean Gameplatform;
     public String Platforms;
     public int Pegirating;
-
     public String divider = "[------------------------------]\r\n";
 
 

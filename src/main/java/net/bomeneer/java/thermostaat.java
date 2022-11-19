@@ -52,28 +52,25 @@ public class thermostaat {
                 looply--;
             }
         }
-        if(looply < 0){
-            int shuffle = 9;//shuffels history if no empty array is found
-            int shuffling = 6;
-            int shufflefrom = shuffle - 1;//Shuffels the old to shuffle (is always shuffle -1)
-            String[] hissact = {action,day,month,year,hour,minute,second};
-            if(!change){
-                while(shuffle > 0){
-                    while(shuffling >= 0){
-                        history[shuffle][shuffling] = history[shufflefrom][shuffling];
-                        shuffling--;
-                    }
-                    shuffle--;
-                    shufflefrom--;
-                }
-                shuffling = 6;
+        int shuffle = 9;//shuffels history if no empty array is found
+        int shuffling = 6;
+        int shufflefrom = shuffle - 1;//Shuffels the old to shuffle (is always shuffle -1)
+        String[] hissact = {action,day,month,year,hour,minute,second};
+        if(!change){
+            while(shuffle > 0){
                 while(shuffling >= 0){
-                    history[0][shuffling] = hissact[shuffling];
+                    history[shuffle][shuffling] = history[shufflefrom][shuffling];
                     shuffling--;
                 }
+                shuffle--;
+                shufflefrom--;
+            }
+            shuffling = 6;
+            while(shuffling >= 0){
+                history[0][shuffling] = hissact[shuffling];
+                shuffling--;
             }
         }
-        else{System.out.println("oops, something went wrong, exiting");System.exit(1);}
 
     }
 
